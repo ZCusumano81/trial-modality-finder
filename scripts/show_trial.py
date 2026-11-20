@@ -13,6 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.ctgov import CTGovError, SearchQuery, get_study, search_studies  # noqa: E402
+from app.modality import classify_intervention  # noqa: E402
 from app.sites import SITE_FLAGS, summarize_trial_sites  # noqa: E402
 from app.trial import Trial, parse_study  # noqa: E402
 
@@ -28,6 +29,16 @@ def print_trial(t: Trial, count_greater_china: bool = False) -> None:
     for i in t.interventions:
         extra = f"  [other names: {', '.join(i.other_names)}]" if i.other_names else ""
         print(f"    - {i.type}: {i.name}{extra}")
+        for c in classify_intervention(i):
+            if not c.is_drug:
+                print(f"        -> {c.name}: {c.role} (not classified)")
+                continue
+            sub = f" / {c.sub_modality}" if c.sub_modality else ""
+            tgt = f", target {c.target}" if c.target else ""
+            how = f"  [{c.source}, {c.confidence} confidence]" if c.source else ""
+            print(f"        -> {c.name}: {c.modality}{sub}{tgt}{how}")
+            if c.evidence:
+                print(f"           evidence: {c.evidence[:150]}")
     print(f"  Arms ({len(t.arm_groups)}):")
     for a in t.arm_groups:
         print(f"    - {a.label} ({a.type or 'type not given'}): {', '.join(a.intervention_names) or '-'}")

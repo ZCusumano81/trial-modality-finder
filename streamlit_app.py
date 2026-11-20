@@ -11,6 +11,7 @@ import pandas as pd
 import streamlit as st
 
 from app.ctgov import PHASES, STATUSES, CTGovError, SearchQuery
+from app.modalitysearch import TARGETS
 from app.pipeline import SearchOutcome, run_search
 from app.results import (Filters, agents_table, filter_trials, modality_options, to_csv, to_excel,
                          trials_table)
@@ -36,17 +37,26 @@ def status_label(code: str) -> str:
 
 @st.cache_data(ttl=3600, show_spinner=False, max_entries=50)
 def cached_search(fields: tuple, statuses: tuple, phases: tuple, nct_ids: tuple,
-                  max_results: int, merge: bool) -> SearchOutcome:
+                  max_results: int, merge: bool, modality: str = "", any_arm: bool = False) -> SearchOutcome:
     text, condition, drug, sponsor, location = fields
     query = SearchQuery(text=text, condition=condition, intervention=drug, sponsor=sponsor, location=location,
                         statuses=list(statuses), phases=list(phases), nct_ids=list(nct_ids))
-    return run_search(query, max_results=max_results, merge_drug_synonyms=merge)
+    return run_search(query, max_results=max_results, merge_drug_synonyms=merge, modality=modality,
+                      any_arm=any_arm)
 
 
 # ---------------------------------------------------------------- sidebar: search
 with st.sidebar:
     st.header("Search ClinicalTrials.gov")
     with st.form("search"):
+        modality = st.selectbox(
+            "Modality", ["Any modality", *[t.label for t in TARGETS]], key="q_mod",
+            help="Find trials by drug modality, e.g. every ADC trial. Combine with a condition, phase, "
+                 "location etc. to narrow it. With a drug name too, keeps only that drug's trials "
+                 "with this modality.")
+        any_arm = st.checkbox("Also count comparator arms", value=False, key="q_anyarm",
+                              help="Off: the modality must be in an experimental arm. "
+                                   "On: any arm, including the comparator.")
         drug = st.text_input("Drug / intervention", key="q_drug", placeholder="e.g. ivonescimab, AK112, T-DXd")
         merge = st.checkbox("Include all known names for the drug", value=True,
                             help="Also searches code names, brand names and synonyms (e.g. AK112 for "
@@ -74,16 +84,18 @@ st.caption("Search ClinicalTrials.gov and see the drug modality of every agent i
 if submitted:
     nct_ids = tuple(x.strip() for x in nct_text.replace(";", ",").replace(" ", ",").split(",") if x.strip())
     fields = (text, condition, drug, sponsor, location)
-    if not any(f.strip() for f in fields) and not nct_ids and not statuses and not phases:
+    chosen_modality = "" if modality == "Any modality" else modality
+    if not any(f.strip() for f in fields) and not nct_ids and not statuses and not phases and not chosen_modality:
         st.warning("Enter at least one search term or filter in the sidebar.")
     else:
         try:
             with st.spinner("Searching ClinicalTrials.gov and classifying drugs. "
                             "The first search for a drug can take up to a minute; repeats are fast."):
                 st.session_state["outcome"] = cached_search(
-                    fields, tuple(statuses), tuple(phases), nct_ids, max_results, merge)
+                    fields, tuple(statuses), tuple(phases), nct_ids, max_results, merge, chosen_modality,
+                    any_arm)
                 st.session_state["search_description"] = "; ".join(
-                    f"{k}: {v}" for k, v in [("drug", drug), ("condition", condition), ("text", text),
+                    f"{k}: {v}" for k, v in [("modality", chosen_modality), ("drug", drug), ("condition", condition), ("text", text),
                                              ("sponsor", sponsor), ("location", location),
                                              ("NCT IDs", ", ".join(nct_ids)),
                                              ("status", ", ".join(statuses)), ("phase", ", ".join(phases))] if v)
@@ -94,12 +106,27 @@ outcome: SearchOutcome | None = st.session_state.get("outcome")
 
 if outcome is None:
     st.info("Use the search panel on the left to find trials. Try a drug like **ivonescimab** or "
-            "**trastuzumab deruxtecan**, a sponsor like **Akeso**, or an NCT ID.")
+            "**trastuzumab deruxtecan**, a sponsor like **Akeso**, an NCT ID - or pick a **Modality** "
+            "(e.g. ADC) with a condition such as **breast cancer**.")
 else:
     # ------------------------------------------------------------ search summary
-    if outcome.names_searched:
+    modality_search = bool(outcome.modality_label) and outcome.candidates > 0
+    if modality_search:
+        where = "any arm" if outcome.modality_any_arm else "an experimental arm"
+        n_possible = len(outcome.possible_ids)
+        st.write(f"**{len(outcome.analyses) - n_possible} trials** with a confirmed "
+                 f"**{outcome.modality_label}** in {where}"
+                 + (f", plus **{n_possible} possible** matches." if n_possible else "."))
+        st.caption(f"Searched {outcome.known_drugs} known drug names of this modality plus keywords, then "
+                   f"classified {outcome.candidates} candidate trials. *Possible* = found by keyword and the "
+                   "drug's own description mentions the modality, but the drug isn't classified yet "
+                   "(it is pending review).")
+        with st.expander("Searches run"):
+            st.write("\n".join(f"- {n}: {c} trials" for n, c in outcome.names_searched.items()))
+    elif outcome.names_searched:
         names = ", ".join(f"{n} ({c})" for n, c in outcome.names_searched.items())
-        st.write(f"**{len(outcome.analyses)} trials** of **{outcome.drug_display_name}**. "
+        mod_note = f" with **{outcome.modality_label}**" if outcome.modality_label else ""
+        st.write(f"**{len(outcome.analyses)} trials** of **{outcome.drug_display_name}**{mod_note}. "
                  f"Names searched (trials returned): {names}.")
         if outcome.dropped:
             st.caption(f"{outcome.dropped} other search hits were left out because they don't list this drug "
@@ -121,12 +148,16 @@ else:
         contains = c3.multiselect("Contains modality (any arm)", modality_options(), key="f_contains",
                                   help="Trials that include all of these anywhere, comparator arms too. "
                                        "E.g. pick ADC to see any trial with an ADC.")
-        c4, c5 = st.columns(2)
+        c4, c5, c6 = st.columns(3)
         combos_only = c4.checkbox("Combination regimens only", key="f_combo")
         pending_only = c5.checkbox('Only trials with drugs "Pending review"', key="f_pending")
+        show_possible = c6.checkbox("Include possible matches", value=True, key="f_possible",
+                                    disabled=not modality_search)
     filters = Filters(site_flags=site_flags, experimental_modalities=exp_mods, contains_modalities=contains,
                       combinations_only=combos_only, pending_only=pending_only)
     rows = filter_trials(outcome.analyses, filters, greater_china)
+    if modality_search and not show_possible:
+        rows = [(tm, s) for tm, s in rows if tm.trial.nct_id not in outcome.possible_ids]
 
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("Trials shown", len(rows))
@@ -134,11 +165,11 @@ else:
     m3.metric("Combination regimens", sum(any(a.is_combination for a in tm.experimental_arms) for tm, _ in rows))
     m4.metric("With drugs pending review", sum(tm.has_pending for tm, _ in rows))
 
-    trials_df = trials_table(rows)
+    trials_df = trials_table(rows, outcome.possible_ids if modality_search else None)
     agents_df = agents_table(rows)
 
     # ------------------------------------------------------------ results table
-    shown_cols = ["NCT ID", "Link", "Title", "Sponsor", "Phase", "Status", "Combination (experimental)",
+    shown_cols = ["NCT ID", *(["Modality match"] if modality_search else []), "Link", "Title", "Sponsor", "Phase", "Status", "Combination (experimental)",
                   "Agents", "Pending review", "Sites", "Site flag", "Site countries", "Indication(s)"]
     event = st.dataframe(
         trials_df[shown_cols], hide_index=True, width="stretch", height=420,

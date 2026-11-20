@@ -52,13 +52,15 @@ def _agents_text(tm: TrialModalities) -> str:
     return "; ".join(f"{a.name} ({a.short_label})" for a in tm.drugs)
 
 
-def trials_table(rows: list[tuple[TrialModalities, SiteSummary]]) -> pd.DataFrame:
-    """One row per trial."""
+def trials_table(rows: list[tuple[TrialModalities, SiteSummary]],
+                 possible_ids: set[str] | None = None) -> pd.DataFrame:
+    """One row per trial. possible_ids: modality-search hits not yet confirmed."""
     records = []
     for tm, s in rows:
         t = tm.trial
         records.append({
             "NCT ID": t.nct_id,
+            "Modality match": ("possible" if t.nct_id in possible_ids else "confirmed") if possible_ids is not None else "",
             "Link": t.url,
             "Title": t.title,
             "Sponsor": t.sponsor,
@@ -75,10 +77,12 @@ def trials_table(rows: list[tuple[TrialModalities, SiteSummary]]) -> pd.DataFram
             "Site countries": s.countries_label,
             "Site flag": s.flag,
         })
-    return pd.DataFrame.from_records(records, columns=[
-        "NCT ID", "Link", "Title", "Sponsor", "Status", "Phase", "Indication(s)", "Combination (experimental)",
+    columns = [
+        "NCT ID", "Modality match", "Link", "Title", "Sponsor", "Status", "Phase", "Indication(s)", "Combination (experimental)",
         "Experimental modalities", "All modalities", "Agents", "Pending review", "Sites", "Countries",
-        "Site countries", "Site flag"])
+        "Site countries", "Site flag"]
+    df = pd.DataFrame.from_records(records, columns=columns)
+    return df if possible_ids is not None else df.drop(columns=["Modality match"])
 
 
 def agents_table(rows: list[tuple[TrialModalities, SiteSummary]]) -> pd.DataFrame:

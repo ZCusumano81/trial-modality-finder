@@ -135,6 +135,18 @@ deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
 - After I review, merge reviewed rows into modalities.csv, run the tests, and
   commit and push.
 
+## Modality search (added after Stage 6, owner's request)
+- Sidebar "Modality" menu (app/modalitysearch.py TARGETS, incl. sub-types such as
+  CAR-T, siRNA, ASO, degrader/PROTAC). Steps: OR-batched searches of known drug
+  names of that modality (curated table + ChEMBL clinical-stage list by
+  molecule_type, cached), plus a keyword search of intervention text; classify
+  every candidate; "confirmed" = an agent has the modality (experimental arms by
+  default, or any arm); "possible" = keyword hit whose pending drug's own
+  name/description uses the keyword. Candidates capped at 3x max results.
+- Broad modalities (mAb, all small molecules, vaccine) require a condition,
+  sponsor, location or free-text term; then it's a plain search + filter.
+- With a drug name too: drug search, keeping only trials with that modality.
+
 ## Curation tools (Stage 6)
 - `uv run python scripts/find_unknowns.py [--max 200] [--include-low]` runs
   data/saved_searches.csv and writes data/unknown_agents.csv (pending agents,

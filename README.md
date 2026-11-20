@@ -26,6 +26,9 @@ uv run streamlit run streamlit_app.py    # open the app in your browser
 
 1. Type a drug (or condition, sponsor, NCT ID...) in the left panel and press **Search**.
    Drug searches include every known name (e.g. AK112 for ivonescimab).
+   Or pick a **Modality** (e.g. ADC, CAR-T, siRNA) to find every trial of that kind -
+   add a condition, phase or location to narrow it. "Possible" matches are trials whose
+   drug is described as that modality but isn't classified yet.
 2. Narrow the results with **Filter results**: site flag (e.g. China-only),
    modality in the experimental arms, or "contains modality" in any arm.
 3. Click a row to see each agent's modality, where it came from, and the evidence.

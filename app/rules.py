@@ -71,7 +71,8 @@ REGIMENS = {
 CLASS_PHRASES: list[tuple[str, str, str]] = [
     (r"\bADCs?\b|antibody[- ]drug conjugate", T.ADC, ""),
     (r"\bbispecific", T.BISPECIFIC, ""),
-    (r"\bCAR[- ]?T\b", T.CELL_THERAPY, "CAR-T"),
+    (r"\bU?CAR[- ]?T\b|chimeric antigen receptor", T.CELL_THERAPY, "CAR-T"),
+    (r"\bCAR[- ]?NK\b", T.CELL_THERAPY, "CAR-NK"),
     (r"\b(?:PD-?1|PD-?L1|CTLA-?4|LAG-?3|TIGIT)\b.*\b(?:inhibitors?|antibod(?:y|ies)|blockade|blockers?|mAbs?)\b",
      T.MAB, ""),
     (r"\b(?:TKIs?|tyrosine kinase inhibitors?|(?:PARP|CDK4/6|aromatase|mTOR|BTK|JAK|KRAS(?: G12[CD])?) inhibitors?|"

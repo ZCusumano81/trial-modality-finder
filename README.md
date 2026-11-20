@@ -22,6 +22,19 @@ uv run python scripts/show_trial.py NCT03529110   # print one trial in the termi
 uv run streamlit run streamlit_app.py    # open the app in your browser
 ```
 
+## Using the app
+
+1. Type a drug (or condition, sponsor, NCT ID...) in the left panel and press **Search**.
+   Drug searches include every known name (e.g. AK112 for ivonescimab).
+2. Narrow the results with **Filter results**: site flag (e.g. China-only),
+   modality in the experimental arms, or "contains modality" in any arm.
+3. Click a row to see each agent's modality, where it came from, and the evidence.
+4. Download the table as CSV, or as Excel with a second sheet listing every agent.
+
+The "Suggest a correction" link appears once a corrections email address is set:
+add `CORRECTIONS_EMAIL = "you@example.org"` to `.streamlit/secrets.toml` (locally)
+or to the app's Secrets on Streamlit Community Cloud.
+
 ## What's in this folder
 
 | Path | What it is |

@@ -95,7 +95,13 @@ SCI_DOSE = re.compile(
 AUC_DOSE = re.compile(r"\bAUC\s*=?\s*\d+(?:[.,]\d+)?\b", re.I)
 
 
+TYPE_PREFIX = re.compile(
+    r"^\s*(?:drug|biological|biologic|genetic|combination product|other|dietary supplement|radiation|"
+    r"procedure|device|behavioral|diagnostic test)\s*:\s*", re.I)
+
+
 def _tidy(text: str) -> str:
+    text = TYPE_PREFIX.sub("", text)
     text = SCI_DOSE.sub(" ", text)
     text = AUC_DOSE.sub(" ", text)
     text = DOSE.sub(" ", text)

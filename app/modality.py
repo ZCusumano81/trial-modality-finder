@@ -160,8 +160,18 @@ def classify_intervention(iv: Intervention, *, online: bool = True,
             calls.append(AgentCall(original=iv.name, name=part, role=role, modality=T.NOT_CLASSIFIED,
                                    source="label", evidence=f"Recognized as {role}"))
             continue
-        names = candidate_names(part)
-        if len(parts) == 1:                      # other names describe the whole intervention
-            names += [n for o in iv.other_names for n in candidate_names(o)]
-        calls.append(classify_agent(iv.name, names or [part], online=online, table=table))
+        names = candidate_names(part) or [part]
+        other = [n for o in iv.other_names for p in split_agents(o) for n in candidate_names(p)] \
+            if len(parts) == 1 else []
+        call = classify_agent(iv.name, names, online=online, table=table)
+        if call.pending and other:
+            # "Other names" are usually synonyms (brand / code names), but some trials list the
+            # partner drugs there instead - so only fall back to them, and say so.
+            fallback = classify_agent(iv.name, other, online=online, table=table)
+            if not fallback.pending:
+                fallback.evidence = (f'Matched via the trial\'s "other names" for {names[0]} '
+                                     f"({', '.join(iv.other_names)}); check this. " + fallback.evidence)
+                fallback.confidence = "low"
+                call = fallback
+        calls.append(call)
     return calls

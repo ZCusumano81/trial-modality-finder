@@ -44,7 +44,8 @@ REFINES = {
     FUSION_PROTEIN: {PEPTIDE, ENZYME, MAB, BISPECIFIC, ADC, AOC},
     SMALL_MOLECULE: {RADIOPHARMACEUTICAL},
     OLIGONUCLEOTIDE: {AOC},
-    GENE_THERAPY: {CELL_THERAPY},     # ChEMBL files some CAR-Ts (gene-modified cells) as "Gene"
+    ADC: {AOC},                       # ChEMBL files antibody-siRNA conjugates as ADCs
+    GENE_THERAPY: {CELL_THERAPY, ONCOLYTIC_VIRUS},   # ChEMBL files CAR-Ts and oncolytic viruses as "Gene"
     UNKNOWN: set(MODALITIES),
 }
 

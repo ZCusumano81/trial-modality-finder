@@ -1,0 +1,353 @@
+name,status,current_guess,other_names,description,type,intervention_text,nct_ids,trial_count,found_by
+AK117,pending,,,"Ivonescimab: a specified dose and frequency administrated by intravenous infusion (IV).
+
+AK117: a specified dose and frequency administrated by intravenous infusion (IV).
+
+Albumin-bound Paclitaxel: 125 mg/m2 weekly for 3 weeks followed by 1 week of rest.
+
+Gemcitabine: 1000 mg/m2 weekly for 3 weeks followed by 1 week of rest. | Administered intravenously at a specified dose and frequency. | Following a predefined dose and date.",DRUG,"AK117 | AK117 in combination with AK112 | AK117+AK104 | Ivonescimab, AK117, Albumin-bound Paclitaxel, Gemcitabine",NCT04349969; NCT04728334; NCT04900350; NCT04980885; NCT05214482; NCT05227664; NCT05229497; NCT05235542; NCT05382442; NCT05960955; NCT06196203; NCT06387420; NCT06601335; NCT06642792; NCT06953999; NCT07245446,16,Akeso-sponsored trials; Ivonescimab (all names)
+TQB2102,pending,,,an anti-HER2 ADC | TQB2102 for injection is a HER2 dual-antibody-drug Conjugate (ADC) | TQB2102 Injection is a Human Epidermal Growth Factor Receptor 2 (HER2) bispecific antibody-drug conjugate.,DRUG,"Cromolyn, TQB2102, and Panpulimab | TQB2102 | TQB2102 Injection | TQB2102 for Injection | TQB2102 for injection",NCT05582499; NCT05749588; NCT06431490; NCT06452706; NCT06798207; NCT07003074; NCT07008976; NCT07043725; NCT07419880; NCT07483684,10,ADC trials recruiting in China; Bispecific antibody Phase 3 trials; Ivonescimab (all names)
+SHR-A1811,pending,,SHR-A1811 group,"an anti-HER2 antibody-drug conjugate (ADC) | Patients will receive the combination of SHR-A1811 and AK112 until disease progression or until other predefined discontinuation criteria are met, whichever occurs first. | SHR-A1811 for injection",DRUG,SHR-A1811 | SHR-A1811 for injection | SHR-A1811 plus AK112,NCT05582499; NCT05911958; NCT06649331; NCT06927180; NCT06990503; NCT07309770; NCT07466303; NCT07489703; NCT07528898,9,ADC trials recruiting in China; Ivonescimab (all names)
+AK102,pending,,,"Administered by subcutaneous injection | Administered AK102 by subcutaneous injection Drug: Statins and/or Ezetimibe lipid-lowering therapies | 450mg, Q4W, subcutaneous injection",BIOLOGICAL; DRUG,150mg AK102 | 300mg AK102 | 450mg AK102 | AK102,NCT03933293; NCT04169386; NCT04173403; NCT04173793; NCT04358432; NCT05255094; NCT05255458; NCT05260411,8,Akeso-sponsored trials
+AK119,pending,,,AK119 IV every 2 weeks.intravenous infusion | AK119 IV every 3 weeks. | AK119 is an anti-CD73 monoclonal antibody.,BIOLOGICAL; DRUG,AK119,NCT04516564; NCT04572152; NCT05173792; NCT05559541; NCT05636267; NCT05689853; NCT05846867,7,Akeso-sponsored trials; Ivonescimab (all names)
+AK120,pending,,,"AK120 regimen 3(first dose doubling)-subcutaneous injection and then every two weeks up to week 24, and follow up to week 32. | subcutaneous injection every 2 weeks. | AK120 Regimen 2- subcutaneous injection every 2 weeks",BIOLOGICAL; DRUG,AK120 | AK120 or placebo- Part 1- Cohort 1 | AK120 or placebo- Part 1- Cohort 2 | AK120 or placebo- Part 1- Cohort 3 | AK120 or placebo- Part 1- Cohort 4,NCT04256174; NCT05048056; NCT05155020; NCT06035354; NCT06092762; NCT06383468; NCT06756126,7,Akeso-sponsored trials
+AK139,pending,,,AK139 regimen 3- subcutaneous injection. | AK139 administered subcutaneously | AK139 regimen 2- subcutaneous injection,BIOLOGICAL; DRUG,AK139 | AK139 and placebo,NCT07436221; NCT07436234; NCT07502222; NCT07755371; NCT07875426; NCT07883213,6,Akeso-sponsored trials
+AK146D1,pending,,,AK146D1 for injection is an anti-Trop2/Nectin4 bispecific antibody-drug conjugate | AK146D1 for injection is an antiTrop2/Nectin4 bispecific antibody-drug conjugate | AK146D1 for injection is an anti-Trop2/Nectin4 bispecific antibody-drug conjugate.,DRUG,AK146D1 for injection,NCT06929663; NCT07067567; NCT07591090; NCT07636772; NCT07669779,5,ADC trials recruiting in China; Akeso-sponsored trials; Ivonescimab (all names)
+HLX43,pending,,,"HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8. | HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8. HLX10 is a humanized anti-PD-1 monoclonal antibody that functions as an immune checkpoint inhibitor. | HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8. DOSE 1 is 2.0mg/kg",DRUG,HLX43 | HLX43 DOSE 1 | HLX43 DOSE 1 + HLX10 | HLX43 DOSE 2 | HLX43 DOSE 3,NCT06769113; NCT06769152; NCT06848699; NCT07115485; NCT07487519,5,ADC trials recruiting in China
+HS-20093,pending,,,"Participants will receive intravenous infusions of HS-20093 and ivonescimab. HS-20093 will be administered at the pre-specified dose level(s) Q3W , until disease progression or other treatment discontinuation criteria are met. | administered as an IV infusion | HS-20093 is a B7-H3 antibody-drug conjugate (ADC).",DRUG,HS-20093,NCT06112704; NCT06332170; NCT07115446; NCT07736612; NCT07899086,5,ADC trials recruiting in China; Ivonescimab (all names)
+9MW2821,pending,,,"a Nectin-4 antibody-drug conjugate (ADC) | Subjects will receive intravenous (IV) infusion of 9MW2821 +other anticancer therapy as per protocol | A Nectin4-directed ADC, via intravenous (into the vein) infusion per protocol.",DRUG,9MW2821 | 9MW2821+other anticancer therapy,NCT05582499; NCT06649331; NCT06926998; NCT07556848,4,ADC trials recruiting in China; Ivonescimab (all names)
+AK138D1,pending,,,Enrolled subjects will receive intravenous infusion (IV) of AK138D1 according to the dosing regimen specified in their cohort.,DRUG,AK138D1,NCT06730386; NCT07281326; NCT07560124; NCT07623356,4,Akeso-sponsored trials; Ivonescimab (all names)
+AK129,pending,,,IV infusion | AK129 is administered intravenously according to the frequency and dosage of administration at different stages. | Subjects receive AK129 intravenously.,DRUG,AK129 | AK129 IV infusion | AK129(RP2D) | AK129(dose 1) | AK129(dose 2),NCT05645276; NCT06642792; NCT06943820,3,Akeso-sponsored trials
+HS-20089,pending,,,Intravenous infusion | Participants will receive HS-20089 in 21 day dosing cycles. Participants will continue treatment until the end of the study in the absence of unacceptable toxicities and unequivocal disease progression. | IV administration of HS-20089 Q3W; Participants will continue treatment until the end of the study in the absence of unacceptable toxicities and confirmed disease progression.,DRUG,HS-20089 | HS-20089 (Phase Ia：Dose escalation ) | HS-20089 (Phase Ib: Dose expansion),NCT05263479; NCT06014190; NCT06336707,3,ADC trials recruiting in China
+AMT-116,pending,,,AMT-116 is an antibody Drug Conjugate (ADC),DRUG,AMT-116,NCT06782334; NCT07590531,2,ADC trials recruiting in China; Ivonescimab (all names)
+BNT327,pending,,,Administered I.V. | Intravenous infusion,BIOLOGICAL; DRUG,BNT327,NCT06892548; NCT06953089,2,ADC trials recruiting in China
+HB1801,pending,,,Albumin docetaxel | IV infusion,DRUG,HB1801,NCT05582499; NCT05838066,2,ADC trials recruiting in China; Bispecific antibody Phase 3 trials; Ivonescimab (all names)
+HS-20110,pending,,,"The recommended dose from the dose-escalation stage and other potential doses will be further explored.
+
+HS-20110 for will be administered by intravenous infusion at selected dose levels, administered in 21 day or 28 day dosing cycles. | HS-20110 will be administered by intravenous infusion on a Q2W schedule at the dose level determined by the SRC in combination with the standard-of-care regimen in 28 days dosing cycles. | HS-20110 will be administered by intravenous infusion at selected dose levels and schedules in combination with the standard-of-care regimen.",DRUG,"Cohort 1: HS-20110+ Bevacizumab+5-FU/leucovorin | Cohort 2: HS-20110+Bevacizumab+Oxaliplatin+5-FU/leucovorin | Cohort 3: HS-20110+Bevacizumab+Oxaliplatin+Capecitabine | HS-20110 | HS-20110 in combination with bevacizumab, 5-FU, and leucovorin.",NCT06892379; NCT07283367,2,ADC trials recruiting in China
+HS-20122,pending,,,"EGFR mut NSCLC, receive HS-20122+Aumolertinib | EGFRwt NSCLC,receive HS-20122+Adbrelimab | EGFR wt NSCLC,receive HS-20122+Adbrelimab+ Platinum-based Chemo",DRUG,HS-20122 | HS-20122+Adbrelimab | HS-20122+Adbrelimab+Platinum-based Chemo | HS-20122+Aumolertinib,NCT06927570; NCT07645222,2,ADC trials recruiting in China
+hyaluronidase human,pending,,Rituxan Hycela; Rituximab Plus Hyaluronidase; Rituximab/Hyaluronidase; Rituximab/Hyaluronidase Human,Given SC,BIOLOGICAL,Rituximab and Hyaluronidase Human,NCT06337318; NCT07724457,2,Bispecific antibody Phase 3 trials
+IBI3005,pending,,,Bispecific Monoclonal Antibody-Camptothecin Derivative Conjugate for Injection (R \& D code: IBI3005),DRUG,IBI3005,NCT06418061; NCT07612137,2,ADC trials recruiting in China
+IBI354,pending,,,an anti-HER2 ADC | Recombinant Anti-HER2 monoclonal Antibody-Camptothecin derivative conjugate for injection,BIOLOGICAL; DRUG,IBI354,NCT05582499; NCT05636215,2,ADC trials recruiting in China; Ivonescimab (all names)
+JS207,pending,,,an anti-PD-1/VEGF bispecific antibody | PD-1/VEGF bispecific antibody supplied as a lyophilized powder for intravenous infusion.,DRUG,JS207,NCT05582499; NCT07823348,2,ADC trials recruiting in China; Bispecific antibody Phase 3 trials; Ivonescimab (all names)
+JSKN016,pending,,,Administered intravenously according to protocol. | JSKN016 is a bispecific antibody drug conjugate targeting HER3 and TROP2.,DRUG,JSKN016 | JSKN016 injection,NCT06592417; NCT06868732,2,ADC trials recruiting in China; Ivonescimab (all names)
+KN026,pending,,,"KN026 is an antibody targeting HER2, administered via intravenous infusion. | IV infusion",DRUG,KN026 | Recombinant Humanized Bispecific antibody against HER2，KN026,NCT05838066; NCT07597629,2,ADC trials recruiting in China; Bispecific antibody Phase 3 trials
+OVV-01,pending,,,Administer once every two weeks. | OVV-01 is administered twice every two weeks,DRUG,OVV-01 | OVV-01，AK112,NCT07650825; NCT07650838,2,Ivonescimab (all names)
+SHR-A1921,pending,,,"Trophoblast cell-surface antigen 2 (TROP2) ADC | A TROP2-directed ADC, via intravenous (into the vein) infusion per protocol.",DRUG,SHR-A1921,NCT05582499; NCT06649331,2,ADC trials recruiting in China; Ivonescimab (all names)
+SYS6010,pending,,,"Participants in the experimental group will receive SYS6010, administered on Day 1 of each cycle.
+
+Participants in the experimental group will receive Enlonstobart, administered on Day 1 of each cycle. | SYS6010 4.2mg/kg,Ivgtt，Q3W，plus Tislelizumab，200 mg，Ivgtt，Q3W",DRUG,SYS6010 | SYS6010 combined with Enlonstobart,NCT07692048; NCT07925021,2,ADC trials recruiting in China
+SYS6023,pending,,,"SYS6023 is a novel antibody-drug conjugate (ADC) targeting HER3, administered via intravenous infusion.",DRUG,SYS6023,NCT07110883; NCT07597629,2,ADC trials recruiting in China
+TQB2868,pending,,,anti-PD-1/TGF-βRII | TQB2102: an anti-HER2 antibody-drug conjugate (ADC) TQB2868: an anti-PD-1/TGF-β bispecific antibody in all-comer TNBC,DRUG,TQB2102 with TQB2868 | TQB2868,NCT05582499; NCT05749588,2,ADC trials recruiting in China; Ivonescimab (all names)
+YL201,pending,,,"YL201 will be administered as IV infusion | Patients will be treated with YL201 intravenous (IV) (A mg/kg or B g/kg infusion once every 3 weeks (Q3W) as a cycle. | Patients will be treated with YL201 intravenous (IV) infusion (A mg/kg or B mg/kg, up to 200mg) followed by atezolizumab on day 1 of each 21 day cycle",DRUG,YL201 | YL201 and atezolizumab,NCT05434234; NCT07208773,2,ADC trials recruiting in China; Ivonescimab (all names)
+10%,pending,,Gammagard Liquid; KIOVIG; TAK-339,"IGI, 10% IV infusion.",BIOLOGICAL,"IGI, 10%",NCT06980480,1,Bispecific antibody Phase 3 trials
+102,pending,,,"SC-102 is a peptide drug conjugate (PDC) consisting an EphA2-targeting peptide, a tubulin inhibitor, and a protease-hydrolyzable linker.",DRUG,SC-102,NCT06710158,1,ADC trials recruiting in China
+2-year ivonescimab maintenance after concurrent chemoradiotherapy in stage non-small cell lung cancer,pending,,,"After concurrent chemoradiotherapy, patients received 2-4 cycles of ivonescimab combined with chemotherapy, with each 3-week period defined as one dosing cycle. On Day 1 of each treatment cycle, ivonescimab was administered first by intravenous infusion; after an interval of at least 30 minutes, pemetrexed or paclitaxel/albumin-bound paclitaxel was administered intravenously. On Day 2, carboplatin",DRUG,Ivonescimab plus chemotherapy followed by 2-year ivonescimab maintenance after concurrent chemoradiotherapy in stage IV non-small cell lung cancer,NCT07936578,1,Ivonescimab (all names)
+3H-10000,pending,,,3H-10000 will be administered by infusion Q2W in 28-day cycles.,DRUG,3H-10000,NCT07354711,1,ADC trials recruiting in China
+5- fluorouracil,pending,,,Intravenous,DRUG,5- Fluorouracil,NCT07412613,1,Akeso-sponsored trials; Bispecific antibody Phase 3 trials
+5-FU/leucovorin,pending,,,HS-20110 for IV infusion of various dosage in combination with Bevacizumab+5-FU/leucovorin administered in Q2W doseing cycles | HS-20110 for IV infusion of various dosage in combination with Bevacizumab+Oxaliplatin+5-FU/leucovorin administered in Q2W doseing cycles,DRUG,Cohort 1: HS-20110+ Bevacizumab+5-FU/leucovorin | Cohort 2: HS-20110+Bevacizumab+Oxaliplatin+5-FU/leucovorin,NCT07283367,1,ADC trials recruiting in China
+6-Mercaptopurine,pending,,,Part of standard chemotherapy and included in experimental treatment phase Protocol IB long in randomization R-T,DRUG,6-Mercaptopurine,NCT03643276,1,Bispecific antibody Phase 3 trials
+68Ga-NOTA-H006 is injected,pending,,,68Ga-NOTA-H006：PET imaging； 18F-FDG：PET imaging,DRUG,68Ga-NOTA-H006 is injected intravenously with a dose of 1.8 MBq[0.05MCi]/kg.,NCT06162988,1,ADC trials recruiting in China
+a dose of /kg,pending,,,68Ga-NOTA-H006：PET imaging； 18F-FDG：PET imaging,DRUG,68Ga-NOTA-H006 is injected intravenously with a dose of 1.8 MBq[0.05MCi]/kg.,NCT06162988,1,ADC trials recruiting in China
+A1: SHR-A1811,pending,,,A1: an anti-HER2 antibody-drug conjugate (ADC),DRUG,A1: SHR-A1811,NCT05749588,1,ADC trials recruiting in China
+A2: SHR-A1811,pending,,SHR-1210,"A2: SHR-A1811: an anti-HER2 antibody-drug conjugate (ADC)
+
+Camrelizumab: an anti-programmed death-1 (PD-1) antibody",DRUG,A2: SHR-A1811 with Camrelizumab with famitinib,NCT05749588,1,ADC trials recruiting in China
+ABBV-400,pending,,,Intravenous (IV) Infusion,DRUG,ABBV-400,NCT06084481,1,ADC trials recruiting in China
+ACE723,pending,,,Intravenous Administration,DRUG,ACE723,NCT07861425,1,ADC trials recruiting in China
+AcNK-Sup003 cell,pending,,,"The AcNK technology has successfully achieved the direct, covalent, and directional conjugation of intact antibodies which includes the Fc domain to the surface of NK cells via a one-step enzymatic reaction. This novel approach yields a non-genetically modified NK cell that is conjugated with dual-targeting antibodies, referred to as AcNK. Specifically, AcNK-Sup003 cells are cryopreserved NK cells",DRUG,AcNK-Sup003 cell injection solution,NCT06693973,1,ADC trials recruiting in China
+active Comparator: BCG induction,pending,,,"Drug: Bacillus Calmette-Guerin Immunotherapy treatment approved by NMPA for patients with high-risk non-muscle invasive bladder cancer
+
+Other Names:
+
+BCG",DRUG,Active Comparator: BCG induction and maintenance,NCT07207824,1,ADC trials recruiting in China
+AI,pending,,Cohort 15 (HR-positive),"Neoadjuvant / conversion phase: After 2-6 cycles of protocol therapy, patients are re-evaluated. Those deemed resectable undergo surgery of the primary tumour ± metastatic sites, followed by radiotherapy or other modalities (e.g., radiofrequency ablation) at the investigator's discretion. Patients who remain unresectable after six cycles continue the same regimen until disease progression, intoler",DRUG,CDK4/6 inhibitor+AI or fulvestrant,NCT06145308,1,Ivonescimab (all names)
+AK101 /AK101,pending,,,"AK101 will be administered as intravenous infusion at Week8, then subcutaneously every 8 weeks thereafter .",BIOLOGICAL,AK101 IV/AK101 SC,NCT06281704,1,Akeso-sponsored trials
+AK104 lenvatinib,pending,,,Subjects will receive AK104 and lenvatinib until disease progression or for a maximum of 24 months,BIOLOGICAL,AK104 lenvatinib,NCT04728321,1,Akeso-sponsored trials
+AK112 medium dose,pending,,,AK112 injection medium dose+ olaparib (Lynparza®) PARP inhibitor,DRUG,AK112 medium dose,NCT04999605,1,Akeso-sponsored trials; Ivonescimab (all names)
+AK112 monotherapy,pending,,,A novel PD-1/VEGF bispecific antibody; RP2D intravenously (IV)，Q3W,DRUG,AK112 monotherapy,NCT06472895,1,Ivonescimab (all names)
+AK114,pending,,,AK114 administered by subcutaneous injection,DRUG,AK114,NCT05200273,1,Akeso-sponsored trials
+AK129 Drug: cadonilimab Drug: oxaliplatin Drug: capecitabine,pending,,,The study drug will be administered at the specified dose and frequency.,DRUG,Drug: AK129 Drug: cadonilimab Drug: oxaliplatin Drug: capecitabine,NCT06586294,1,Akeso-sponsored trials
+AK129 Drug:oxaliplatin Drug:capecitabine,pending,,,The study drug will be administered at the specified dose and frequency.,DRUG,Drug: AK129 Drug：oxaliplatin Drug：capecitabine,NCT06586294,1,Akeso-sponsored trials
+AK131,pending,,,AK131 is an anti-PD-1 and CD73 bispecific antibody,DRUG,AK131,NCT06166888,1,Akeso-sponsored trials
+AK132,pending,,,"IV infusion, specified dose on specified days.",DRUG,AK132,NCT06166472,1,Akeso-sponsored trials
+AK135,pending,,,"IV infusion, specified dose with specified treatment frequency",DRUG,AK135,NCT06860789,1,Akeso-sponsored trials
+AK137,pending,,,"IV infusion, specified dose on specified days.",DRUG,AK137,NCT06691360,1,Akeso-sponsored trials
+AK150,pending,,,"IV infusion, administered on Day 1 of each cycle, Q2W,continuous treatment",DRUG,AK150,NCT07566247,1,Akeso-sponsored trials
+AK152,pending,,,Subjects receiving single or multiple doses of AK152 injection.,DRUG,AK152,NCT07301502,1,Akeso-sponsored trials
+AK154,pending,,,AK154 is neotigeon personalized mRNA vaccine,BIOLOGICAL,AK154,NCT06913218,1,Akeso-sponsored trials; Ivonescimab (all names)
+AK157D1,pending,,,"IV infusion, administered on Day 1 of each cycle, Q3W, continuous treatment",DRUG,AK157D1 for injection,NCT07847281,1,Akeso-sponsored trials
+AK158D1,pending,,,Subjects will receive AK158D1 via intravenous infusion (IV) in prespecified dose levels.,DRUG,AK158D1,NCT07939919,1,Akeso-sponsored trials
+ALK201,pending,,,Subjects will be randomized 1:1 to the two dose levels selected from Part A. The administered dose will be calculated based on the assigned dose arm and the subject's body weight.,DRUG,ALK201 for injection,NCT07742956,1,Ivonescimab (all names)
+ALK202,pending,,,This study employs combined medication. The participants in different groups are treated for non-small cell lung cancer using ALK202 in combination with various drugs.,DRUG,ALK202 for injection,NCT07603791,1,Ivonescimab (all names)
+AMG 386,pending,,AMG 386 (Trebananib); (Trastuzumab) Herceptin; AMG 386 (Trebananib); Trastuzumab (Herceptin),Arm is closed.,DRUG,AMG 386 and Trastuzumab | AMG 386 with or without Trastuzumab,NCT01042379,1,Ivonescimab (all names)
+anti-complement,pending,,,Administered via injection.,DRUG,bispecific anti-VEGF and anti-complement,NCT07520318,1,Bispecific antibody Phase 3 trials
+AR,pending,,"Cohort 10 (HER2+/AR+, AR antagonist + goserelin + pertuzumab + trastuzumab); Cohort 11 (AR-positive, AR antagonist + goserelin ± docetaxel)","Neoadjuvant / conversion phase: After 2-6 cycles of protocol therapy, patients are re-evaluated. Those deemed resectable undergo surgery of the primary tumour ± metastatic sites, followed by radiotherapy or other modalities (e.g., radiofrequency ablation) at the investigator's discretion. Patients who remain unresectable after six cycles continue the same regimen until disease progression, intoler",DRUG,"AR,AR antagonist ++ goserelin + pertuzumab + trastuzumab | AR,AR antagonist +goserelin +docetaxel",NCT06145308,1,Ivonescimab (all names)
+AZD0901,pending,,CMG901,Antibody-drug conjugate/Biologic,DRUG,AZD0901,NCT06219941,1,ADC trials recruiting in China
+AZD4512 monotherapy,pending,,,Patients will receive AZD4512 as monotherapy via intravenous infusion. AZD4512 is an antibody-drug conjugate targeting CD22,COMBINATION_PRODUCT,AZD4512 monotherapy,NCT07109219,1,ADC trials recruiting in China
+AZD5335,pending,,,antibody drug conjugate,DRUG,AZD5335,NCT07218809,1,ADC trials recruiting in China
+BAT8008,pending,,Recombinant humanized anti Trop2 monoclonal antibody for injection Exetecan conjugate,"Intravenous infusion, once every 2 weeks (Q2W). It is recommended that the infusion time of the first cycle should be ≥ 3 hours. If no infusion reaction occurs, the subsequent circulation can be completed within 1-2 hours.",DRUG,BAT8008 for Injection,NCT05620017,1,ADC trials recruiting in China
+BAY 3547922,pending,,,antibody conjugate without actinium-225 label as preinjection,DRUG,BAY 3547922,NCT06764316,1,ADC trials recruiting in China
+BAY 3547926,pending,,,antibody conjugate with actinium-225 label,DRUG,BAY 3547926,NCT06764316,1,ADC trials recruiting in China
+BAY 3713389,pending,,,optional preinjection,DRUG,BAY 3713389,NCT06764316,1,ADC trials recruiting in China
+BAY 3713391,pending,,,Radioactive imaging agent - optional preinjection,DRUG,BAY 3713391,NCT06764316,1,ADC trials recruiting in China
+BCG induction,pending,,,"Drug: Disitamab vedotin(RC48) •An antibody-drug conjugates (ADCs) targeting HER2, has been approved in China for chemotherapy-refractory advanced UC with HER2-expression.
+
+Other Names:
+
+• RC48, DV
+
+Drug: Bacillus Calmette-Guerin Immunotherapy treatment approved by NMPA for patients with high-risk non-muscle invasive bladder cancer
+
+Other Names:
+
+BCG",DRUG,DV + BCG induction and maintenance,NCT07207824,1,ADC trials recruiting in China
+BNT324,pending,,DB-1311,Intravenous infusion,BIOLOGICAL,BNT324,NCT06892548,1,ADC trials recruiting in China
+BNT326,pending,,,Intravenous (IV) infusion,DRUG,BNT326,NCT07070232,1,ADC trials recruiting in China
+BP102,pending,,,"C2: SHR-A1811: an anti-HER2 antibody-drug conjugate (ADC)
+
+BP102: a humanized recombinant monoclonal IgG1 antibody (biosimilar to bevacizumab) | D2: TROP2 ADC : an Trophoblast cell-surface antigen 2 (TROP2) ADC
+
+BP102: a humanized recombinant monoclonal IgG1 antibody (biosimilar to bevacizumab)",DRUG,C2: SHR-A1811 with BP102 | D2: TROP2 ADC with BP102,NCT05749588,1,ADC trials recruiting in China
+BR,pending,,,"Bendamustine, Rituximab",DRUG,BR,NCT06549595,1,Bispecific antibody Phase 3 trials
+C1: SHR-A1811,pending,,,C1: an anti-HER2 antibody-drug conjugate (ADC),DRUG,C1: SHR-A1811,NCT05749588,1,ADC trials recruiting in China
+C2: SHR-A1811,pending,,,"C2: SHR-A1811: an anti-HER2 antibody-drug conjugate (ADC)
+
+BP102: a humanized recombinant monoclonal IgG1 antibody (biosimilar to bevacizumab)",DRUG,C2: SHR-A1811 with BP102,NCT05749588,1,ADC trials recruiting in China
+cadonilimab combined -paclitaxel,pending,,rutine,If the addition of Cadonilimab to neoadjuvant chemotherapy further improve the efficiency for locally advanced esophageal squamous cell carcinoma,DRUG,"Cadonilimab Combined Albumin-paclitaxel, Cisplatin and Fluorouracil",NCT05947201,1,Akeso-sponsored trials
+capcitabine,pending,,,1250 mg/m2 twice daily on days 1-14 of each 21-day cycle,DRUG,capcitabine,NCT07768189,1,ADC trials recruiting in China
+cervical spine,pending,,manual therapy; physiotherapy,"Manual therapy (mobilisations of TMJ and cervical spine C0-C7, myofascial techniques, intraoral TMJ techniques with gloves), neuromuscular exercise (CCFT with pressure biofeedback, scapular stabilisation, proprioceptive training), home exercise program. 16 sessions × 60 min over 8 weeks. Arms: Arm 1.",OTHER,Multimodal physiotherapy for TMJ and Cervical spine,NCT07468318,1,Akeso-sponsored trials
+chemotherapeutic drug,pending,,,"Another anti-tumor drug chosen from chemotherapeutic drug, ADC, or PARP inhibitor will be administered at investigator's discretion.",DRUG,"Chemotherapeutic drug, ADC or PARP inhibitor",NCT06121557,1,ADC trials recruiting in China
+chemotherapy drugs,pending,,,Chemotherapy drugs are determined based on the investigator's decision.,DRUG,chemotherapy drugs,NCT06702566,1,ADC trials recruiting in China
+control arm,pending,,,Comparator product will be administered by IV infusion.,DRUG,Control Arm,NCT07217301,1,Bispecific antibody Phase 3 trials
+CRB-701,pending,,,CRB-701 3.6mg/Kg administered intravenously every 21 days (Q3W),DRUG,CRB-701,NCT07768189,1,ADC trials recruiting in China
+CS5007,pending,,,CS5007 will be administered via intravenous (IV) infusion on Day 1 of repeated 21-day cycles (Q3W).,DRUG,CS5007,NCT07622524,1,ADC trials recruiting in China
+CTX-009,pending,,,IV infusion on day 1 and 14 of every 28 day cycle,DRUG,CTX-009,NCT05506943,1,Bispecific antibody Phase 3 trials
+Dan222,pending,,,"Arm is closed.
+
+DAN222: 8mg/m2 IV QW for 12 weeks Niraparib: 200mg QD p.p., 12 weeks",DRUG,Dan222 + Niraparib,NCT01042379,1,Ivonescimab (all names)
+DB-1305/BNT325,pending,,,Administered I.V.,DRUG,DB-1305/BNT325,NCT06953089,1,ADC trials recruiting in China
+DB-1311/BNT324,pending,,,Administered I.V.,DRUG,DB-1311/BNT324,NCT06953089,1,ADC trials recruiting in China
+DEC003M,pending,,,Once every 3 weeks (Q3W) with a cycle length of 21 days,DRUG,DEC003M,NCT07657806,1,ADC trials recruiting in China
+docetaxel combined,pending,,,Positive control.,DRUG,Docetaxel combined + Trastuzumab +Pertuzumab,NCT07003074,1,ADC trials recruiting in China
+docetaxel monotherapy,pending,,,"Participants will receive Docetaxel, administered as an IV infusion.",DRUG,Docetaxel monotherapy,NCT07144280,1,ADC trials recruiting in China
+DV,pending,,,"Drug: Disitamab vedotin(RC48) •An antibody-drug conjugates (ADCs) targeting HER2, has been approved in China for chemotherapy-refractory advanced UC with HER2-expression.
+
+Other Names:
+
+• RC48, DV
+
+Drug: Bacillus Calmette-Guerin Immunotherapy treatment approved by NMPA for patients with high-risk non-muscle invasive bladder cancer
+
+Other Names:
+
+BCG",DRUG,DV + BCG induction and maintenance,NCT07207824,1,ADC trials recruiting in China
+E1: SHR-A1811,pending,,,E1: an anti-HER2 antibody-drug conjugate (ADC),DRUG,E1: SHR-A1811,NCT05749588,1,ADC trials recruiting in China
+E2: SHR-A1811,pending,,,E1: SHR-A1811 an anti-HER2 antibody-drug conjugate (ADC) everolimus： an mTOR inhibitor,DRUG,E2: SHR-A1811 with everolimus,NCT05749588,1,ADC trials recruiting in China
+eloctate injectable product,pending,,rFVIIIFc,This is a factor VIII-Fc fusion protein.,DRUG,Eloctate Injectable Product,NCT04303559,1,Bispecific antibody Phase 3 trials
+eloctate ITI,pending,,rFVIIIFc,This is a factor VIII-Fc infusion protein.,DRUG,Eloctate ITI,NCT04303572,1,Bispecific antibody Phase 3 trials
+EVM14,pending,,,"Cancer Vaccine, Intramuscular (IM) injection at escalating dose levels, administered once every 3 weeks (Q3W)",BIOLOGICAL,EVM14,NCT07614646,1,Ivonescimab (all names)
+FEIBA,pending,,Activated prothrombin complex (aPCC); Anti-Inhibitor Coagulant Complex,"FEIBA™ is an Anti-Inhibitor Coagulant Complex indicated for use in hemophilia patients with inhibitors for: control and prevention of bleeding episodes, perioperative management, and routine prophylaxis to prevent or reduce the frequency of bleeding episodes.
+
+The max dose allowed for aPCC will be 50 U/kg dose given at a single visit.",DRUG,FEIBA,NCT04563520,1,Bispecific antibody Phase 3 trials
+FG-M131,pending,,,1\~2 dose levels of FG-M131 will be tested according to the result from dose escalation stage,DRUG,FG-M131,NCT07758491,1,ADC trials recruiting in China
+FZ-AD005,pending,,,"Every 21 days for 1 cycle. Subjects will receive an intravenous infusion of FZ-AD005 until confirmed progression, unaccepted toxicity, or any criterion for withdrawal from the study.",DRUG,FZ-AD005,NCT07455045,1,ADC trials recruiting in China
+G1: SHR-A1811,pending,,,G1: an anti-HER2 antibody-drug conjugate (ADC),DRUG,G1: SHR-A1811,NCT05749588,1,ADC trials recruiting in China
+GB268,pending,,,"GB268 is a tri-specific antibody targeting PD-1, CTLA-4, and VEGF. It is designed to block immune checkpoints (PD-1/CTLA-4) to enhance T-cell-mediated anti-tumor immune responses and simultaneously inhibit VEGF-mediated tumor angiogenesis",DRUG,GB268,NCT07738341,1,ADC trials recruiting in China
+GenSci139,pending,,,GenSci139 is a bispecific antibody drug conjugate targeting EGFR and HER2.,DRUG,GenSci139,NCT07230977,1,ADC trials recruiting in China
+GenSci164,pending,,,6 dose cohorts,DRUG,GenSci164 Injection,NCT07790783,1,ADC trials recruiting in China
+GnP,pending,,,"Gemcitabine 1000mg/m2, ivgtt,vdays 1 and 8, nab-Paclitaxel 125mg/m2, ivgtt, days 1 and 8 in combination with Ivonescimab 20mg/kg d1, every 21 days. Cycle 2 will be synchronized with primary or metastatic SBRT.",COMBINATION_PRODUCT,GnP in combination with Ivonescimab and SBRT,NCT06991491,1,Ivonescimab (all names)
+GQ1001,pending,,,GQ1001 infusions on day 1 of each 21-day cycle combinate with pyrotinib 320mg orally once daily until disease progression or unacceptable toxicity. I.,DRUG,GQ1001+pyrotinib,NCT05575804,1,ADC trials recruiting in China
+GR1801,pending,,,"The injection solution GR1801 does not contain preservatives. The excipients include histidine/histidine hydrochloride (20mM), trehalose (90 mg/mL), disodium EDTA (0.372mg/mL) and polysorbate 80 (0.5 mg/mL). The pH value is 5.8 and each bottle contains 2mg of GR1801 protein. The packaging material is a borosilicate glass tube injection bottle (2mL) with a halogenated butyl rubber stopper for injec",BIOLOGICAL,GR1801,NCT05846568,1,Bispecific antibody Phase 3 trials
+Granulocyte-Macrophage Colony-Stimulating factor,pending,,,"All Participants will have subcutaneously injection of granulocyte-macrophage colony-stimulating factor from day 1 to day 14, then take a 7 days break.",DRUG,Granulocyte-Macrophage Colony-Stimulating Factor,NCT05817214,1,Akeso-sponsored trials
+GSK 5733584,pending,,,"Arm is open for accrual.
+
+Route: Intravenous infusion Dosage Form: 4.8 mg/kg intravenous Q3W for injection. Will receive a max of 12 weeks. | Arm is open for accrual.
+
+GSK 5733584 Route: Intravenous Infusion Dosage Form: 4.8 mg/kg intravenous Q3W for injection x 12 weeks max.
+
+Dostarlimab Route: Intravenous Infusion Dosage Form: 500 mg fixed dose intravenous Q3W for infusion x 12 weeks max.",DRUG,GSK 5733584 | GSK 5733584 + Dostarlimab,NCT01042379,1,Ivonescimab (all names)
+HDM2024,pending,,,ADC drug targeting EGFR and HER3,DRUG,HDM2024,NCT07539285,1,ADC trials recruiting in China
+HER2,pending,,"Cohort 19 (HER2-positive, pyrotinib + pertuzumab + trastuzumab); Cohort9(HER2-positive, DS-8201 ± pertuzumab)","Neoadjuvant / conversion phase: After 2-6 cycles of protocol therapy, patients are re-evaluated. Those deemed resectable undergo surgery of the primary tumour ± metastatic sites, followed by radiotherapy or other modalities (e.g., radiofrequency ablation) at the investigator's discretion. Patients who remain unresectable after six cycles continue the same regimen until disease progression, intoler",DRUG,"HER2, pyrotinib + pertuzumab/trastuzumab | HER2,trastuzumab deruxtecan± pertuzumab",NCT06145308,1,Ivonescimab (all names)
+HLX43 IN ≥ TNBC,pending,,,"Dose 1; HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8. | Dose 2; HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8. | HLX43 is an anti-PD-L1 monoclonal antibody conjugated with a novel high potency DNA topoisomerase I (topo I) inhibitor, with a drug-antibody-ratio (DAR) of 8.",DRUG,HLX43 DOSE 1 IN ≥2L TNBC | HLX43 DOSE 2 IN 1L TNBC | HLX43 DOSE 2 IN ≥2L TNBC | HLX43 DOSE1 IN 1L TNBC,NCT07487519,1,ADC trials recruiting in China
+HRS-2329,pending,,,"HRS-2329 is a novel, potent, oral pan-RAS inhibitor. HRS-2329 is given orally (to be swallowed whole, not chewed). It should be taken orally within 30 minutes after breakfast each morning.",DRUG,HRS-2329 Tablet,NCT07736612,1,ADC trials recruiting in China
+HRS-4508,pending,,,an HER2 inhibitor,DRUG,HRS-4508,NCT05582499,1,ADC trials recruiting in China; Ivonescimab (all names)
+HRS-5041,pending,,,"HRS-5041 was given oral administration, QD, at a 21-day cycle.",DRUG,HRS-5041,NCT07115446,1,ADC trials recruiting in China
+HRS-6209,pending,,,an oral cyclin-dependent kinases 4 (CDK4) inhibitor,DRUG,HRS-6209,NCT05582499,1,ADC trials recruiting in China; Ivonescimab (all names)
+HRS-7249,pending,,,Dosing level: High dose,DRUG,HRS-7249 Injection,NCT07799688,1,ADC trials recruiting in China
+HS-20117,pending,,PM1080,Participants will receive HS-20117 once during cycle 1 and once every 2 weeks during subsequent cycles (The duration of each treatment cycle is 28 days),DRUG,HS-20117,NCT06417008,1,Bispecific antibody Phase 3 trials
+HS-20124,pending,,,Participants will receive HS-20124 in 21 day dosing cycles. Participants will continue treatment until the end of the study in the absence of unacceptable toxicities and unequivocal disease progression.,DRUG,HS-20124 (Phase Ia：Dose escalation ) | HS-20124 (Phase Ib: Dose expansion),NCT06763159,1,ADC trials recruiting in China
+human rabies immunoglobulin,pending,,,"The HRIG is a Chinese licensed Human Rabies Immunoglobulin produced by BOYA-BIO, which are derived from human plasma, and then purified and filled in the injectable vial form.",BIOLOGICAL,Human Rabies Immunoglobulin(HRIG),NCT05846568,1,Bispecific antibody Phase 3 trials
+IBI3028,pending,,,Recombinant anti-EGFR（Epidermal growth factor receptor） and c-Met antibodies-dual-payload conjugate for injection,DRUG,Drug: IBI3028,NCT07589205,1,ADC trials recruiting in China
+IBI351,pending,,fulzerasib; ivonescimab,The advanced or metastatic non-small cell lung cancer patients with KRAS G12C mutation will receive the combination of fulzerasib (IBI351) with ivonescimab (AK-112) in first-line treatment,DRUG,IBI351+AK112,NCT06936644,1,Ivonescimab (all names)
+IGI,pending,,Gammagard Liquid; KIOVIG; TAK-339,"IGI, 10% IV infusion.",BIOLOGICAL,"IGI, 10%",NCT06980480,1,Bispecific antibody Phase 3 trials
+IgPro20,pending,,Immune Globulin Subcutaneous (Human) 20% Liquid,IgPro20 infusion administered SC.,BIOLOGICAL,IgPro20,NCT07648264,1,Bispecific antibody Phase 3 trials
+induction therapy,pending,,,"VICP+VEN regimen:
+
+* Vindesine: 3 mg/m²/day (max 4 mg), administered on days 1, 8, 15, 22.
+* Idarubicin (IDA): 8 mg/m², days 1, 8, 15, 22.
+* Cyclophosphamide (CTX): 500 mg/m², days 7, 21.
+* Prednisone: 1 mg/kg/day, days 1-14; 0.5 mg/kg/day, days 15-28
+* Venetoclax (VEN) 8-day ramp-up: Day 1: 100 mg, Day 2: 200 mg, Days 3-8: 400 mg/day",DRUG,Induction Therapy Regimen,NCT07059156,1,Bispecific antibody Phase 3 trials
+intolerable toxicity,pending,,,"Drug: ivonescimab 20mg/kg, IV, D1, Q3W
+
+Other Names:
+
+AK112 Drug: irinotecan liposome(II) 70mg/m\^2, IV, D1, Q3W",DRUG,"irinotecan liposome(II) plus Ivonescimab via intravenously (IV) Q3W for 4-6 cycles, followed by Ivonescimab until disease progression or intolerable toxicity",NCT06820762,1,Ivonescimab (all names)
+intrathecal,pending,,,"Trastuzumab-rezetecan is administered via combined intrathecal and systemic routes. Systemic dosing: 4.8 mg/kg by intravenous infusion once every 3 weeks (q3w). Intrathecal dosing: 20% of the systemic dose, administered once weekly during Cycle 1 and Cycle 2, then once every 3 weeks from Cycle 3 onward.",DRUG,Intrathecal and systemic administration of Trastuzumab Rezetecan,NCT07833657,1,ADC trials recruiting in China
+investigational drug: HLX37,pending,,,HLX37: HLX37 will be given at dose1 in Stage I via intravenous (IV) infusion once every 3 weeks (Day 1 \[D1\] of each cycle). HLX37 will be given in Stage II at a dose to be determined based on Stage I study results via IV infusion once every 3 weeks (D1 of each cycle). | HLX37 will be given at dose2 (treatment group 2) in Stage I via intravenous (IV) infusion once every 3 weeks (Day 1 \[D1\] of each cycle). HLX37 will be given in Stage II at a dose to be determined based on Stage I study results via IV infusion once every 3 weeks (D1 of each cycle).,DRUG,"Investigational drug: HLX37 dose1, IV, Q3W | Investigational drug: HLX37 dose2, IV, Q3W",NCT07865910,1,Bispecific antibody Phase 3 trials
+IP PTX,pending,,,Given by IP port,DRUG,IP PTX,NCT07753824,1,Ivonescimab (all names)
+ivonescimab until disease progression,pending,,,"Drug: ivonescimab 20mg/kg, IV, D1, Q3W
+
+Other Names:
+
+AK112 Drug: irinotecan liposome(II) 70mg/m\^2, IV, D1, Q3W",DRUG,"irinotecan liposome(II) plus Ivonescimab via intravenously (IV) Q3W for 4-6 cycles, followed by Ivonescimab until disease progression or intolerable toxicity",NCT06820762,1,Ivonescimab (all names)
+ivonescimab via for 4-6 cycles,pending,,,"Drug: ivonescimab 20mg/kg, IV, D1, Q3W
+
+Other Names:
+
+AK112 Drug: irinotecan liposome(II) 70mg/m\^2, IV, D1, Q3W",DRUG,"irinotecan liposome(II) plus Ivonescimab via intravenously (IV) Q3W for 4-6 cycles, followed by Ivonescimab until disease progression or intolerable toxicity",NCT06820762,1,Ivonescimab (all names)
+iza-bren,pending,,,"2.5 mg/kg, intravenous drip on Days 1 and 8 of each 21-day cycle.",BIOLOGICAL,Iza-bren,NCT07941583,1,Ivonescimab (all names)
+JMT108,pending,,,Intravenous (IV) administration every three weeks (D1) in a 3-week cycle.,DRUG,JMT108,NCT06877650,1,Ivonescimab (all names)
+JNJ-79635322,pending,,,JNJ-79635322 will be administered as SC injection.,DRUG,JNJ-79635322,NCT07258511,1,Bispecific antibody Phase 3 trials
+JS007,pending,,,CTLA-4 monoclonal antibody supplied as an injectable solution for intravenous infusion.,DRUG,JS007,NCT07823348,1,Bispecific antibody Phase 3 trials
+JSKN003,pending,,,an anti-HER2 ADC,DRUG,JSKN003,NCT05582499,1,ADC trials recruiting in China; Ivonescimab (all names)
+JSKN022,pending,,,JSKN022 administered intravenously at selected dose levels according to protocol,DRUG,JSKN022,NCT07292402,1,ADC trials recruiting in China
+JSKN033,pending,,,JSKN033 in combination with platinum-based chemotherapy with or without bevacizumab at selected dose levels according to protocol,DRUG,JSKN033,NCT07497074,1,ADC trials recruiting in China
+l-leucovorin,pending,,I-LV,Chemotherapy agents,DRUG,l-leucovorin,NCT06219941,1,ADC trials recruiting in China
+LEM,pending,,,liposome-entrapped mitoxantrone,DRUG,LEM,NCT05582499,1,ADC trials recruiting in China; Ivonescimab (all names)
+lisaftoclax,pending,,,"Patients will receive Brentuximab Vedotin (1.8 mg/kg, IV, q3w, 16 cycles). Starting from cycle 6, oral Lisaftoclax will be added (600 mg daily on days 1-10 of each 21-day cycle, for 9 cycles, with a daily dose ramp-up in the first cycle).",DRUG,Lisaftoclax (APG-2575),NCT07717580,1,ADC trials recruiting in China
+LY4052031,pending,,,Intravenous,DRUG,LY4052031,NCT06465069,1,ADC trials recruiting in China
+M701,pending,,,Intra-peritoneal infusion of M701 in experimental group (M701 group\_,DRUG,M701,NCT06432296,1,Bispecific antibody Phase 3 trials
+maintenance,pending,,,"Drug: Bacillus Calmette-Guerin Immunotherapy treatment approved by NMPA for patients with high-risk non-muscle invasive bladder cancer
+
+Other Names:
+
+BCG | Drug: Disitamab vedotin(RC48) •An antibody-drug conjugates (ADCs) targeting HER2, has been approved in China for chemotherapy-refractory advanced UC with HER2-expression.
+
+Other Names:
+
+• RC48, DV
+
+Drug: Bacillus Calmette-Guerin Immunotherapy treatment approved by NMPA for patients with high-risk non-muscle invasive bladder cancer
+
+Other Names:
+
+BCG",DRUG,Active Comparator: BCG induction and maintenance | DV + BCG induction and maintenance,NCT07207824,1,ADC trials recruiting in China
+maintenance therapy,pending,,,one years of maintenance therapy with carbonilumab alone will be implemented to patients with advanced cervical cancer receiving standard concurrent chemoradiotherapy,DRUG,maintenance therapy,NCT06714084,1,Akeso-sponsored trials
+Menhycia® ),pending,,,Pharmaceutical form:Lyophilized powder (MenAC conjugate vaccine) and liquid solution (MenYW135 conjugate vaccine)-Route of administration:IM injection,BIOLOGICAL,"Menhycia® (ACYW135 Meningococcal Conjugate Vaccine [CRM197]) (CanSino Biologics Inc., China)",NCT07710872,1,ADC trials recruiting in China
+MenQuadfi® tetanus toxoid conjugate Vaccine),pending,,,Pharmaceutical form:Liquid solution-Route of administration:IM injection,BIOLOGICAL,"MenQuadfi® (Meningococcal Polysaccharide [Serogroups A, C, W, and Y] Tetanus Toxoid Conjugate Vaccine) (Sanofi Pasteur Inc., Swiftwater, PA, USA)",NCT07710872,1,ADC trials recruiting in China
+mFOLFORINOX,pending,,,mFOLFIRINOX:Fluorouracil+leucovorin+Irinotecan+Oxaliplatin,DRUG,mFOLFORINOX,NCT06913218,1,Akeso-sponsored trials; Ivonescimab (all names)
+mFOLFOXIRI,pending,,5-Fluorouracil; Irinotecan; Ivonescimab; Leucovorin; Oxaliplatin; celecoxib,"Ivonescimab（AK112）10mg/kg, intravenously for 60 minutes, followed by mFOLFOXIRI (oxaliplatin 85 mg/m2, irinotecan 150 mg/m2, and folinic acid 400 mg/m2 followed by 5-fluorouracil 2400mg/m2 as a 46-hour continuous infusion on day 1) every 2 weeks, celecoxib 400mg oral everyday.",DRUG,Ivonescimab +mFOLFOXIRI +celecoxib,NCT07809893,1,Ivonescimab (all names)
+MHB088C,pending,,,"MHB088C for Injection, an antibody drug-conjugated molecule (ADC) MHB088C will be administered intravenously at a frequency of once every 2 weeks (Q2W) or every 3 week (Q3W).",DRUG,MHB088C for Injection,NCT07102004,1,ADC trials recruiting in China
+MIRV,pending,,,Administered IV,DRUG,MIRV,NCT07213804,1,ADC trials recruiting in China
+MRG006A,pending,,,Administrated intravenously,DRUG,MRG006A,NCT07093970,1,ADC trials recruiting in China
+multimodal physiotherapy for TMJ,pending,,manual therapy; physiotherapy,"Manual therapy (mobilisations of TMJ and cervical spine C0-C7, myofascial techniques, intraoral TMJ techniques with gloves), neuromuscular exercise (CCFT with pressure biofeedback, scapular stabilisation, proprioceptive training), home exercise program. 16 sessions × 60 min over 8 weeks. Arms: Arm 1.",OTHER,Multimodal physiotherapy for TMJ and Cervical spine,NCT07468318,1,Akeso-sponsored trials
+neoadjuvant chemotherapy,pending,,,Two cycles of carbonilumab plus TP regimen neoadjuvant chemotherapy will be implemented to patients with advanced cervical cancer,DRUG,Neoadjuvant Chemotherapy (NACT),NCT06714084,1,Akeso-sponsored trials
+neoadjuvant therapy,pending,,,"Ivonescimab（AK112) 20mg/kg, IV, Day 1; Albumin paclitaxel 260mg/m2, Day 1; carboplatin AUC=5, Day 1; Preoperative neoadjuvant therapy for 3 cycles, one cycle every 21 days.",COMBINATION_PRODUCT,"Ivonescimab（AK112), Albumin paclitaxel, carboplatin AUC=5, neoadjuvant therapy",NCT07244978,1,Ivonescimab (all names)
+non-intervention research,pending,,,Non-intervention research,OTHER,Non-intervention research,NCT06877416,1,ADC trials recruiting in China
+NTRK-fusion or NTRK-mutant,pending,,NTRK-inhibitor,"Neoadjuvant / conversion phase: After 2-6 cycles of protocol therapy, patients are re-evaluated. Those deemed resectable undergo surgery of the primary tumour ± metastatic sites, followed by radiotherapy or other modalities (e.g., radiofrequency ablation) at the investigator's discretion. Patients who remain unresectable after six cycles continue the same regimen until disease progression, intoler",DRUG,Cohort 2 (NTRK-fusion or NTRK-mutant),NCT06145308,1,Ivonescimab (all names)
+OBI-902,pending,,,OBI-902 is an antibody-drug conjugate study drug,DRUG,OBI-902,NCT07124117,1,ADC trials recruiting in China
+other anticancer therapy,pending,,,Subjects will receive intravenous (IV) infusion of 9MW2821 +other anticancer therapy as per protocol,DRUG,9MW2821+other anticancer therapy,NCT06926998,1,ADC trials recruiting in China
+PD-1,pending,,,"PD-1 inhibitor includes pembrolizumab，Nivolumab，Sintilimab，tislelizumab，Triplimab，Camrelizumab, Serplulimab.
+
+PD-L1 inhibitor includes durvalumab,Atezolizumab,Adebrelimab,Envafolimab.",DRUG,PD-1 and PD-L1 inhibitor,NCT06702566,1,ADC trials recruiting in China
+pembrolizumab - 4 cycle,pending,,,Arm is closed.,DRUG,Pembrolizumab - 4 cycle,NCT01042379,1,Ivonescimab (all names)
+pembrolizumab - 8 cycle,pending,,,Arm is closed.,DRUG,Pembrolizumab - 8 cycle,NCT01042379,1,Ivonescimab (all names)
+PF-08046050,pending,,SAR445953; SGN-CEACAM5C,Given into the vein (IV; intravenous),DRUG,PF-08046050,NCT06131840,1,ADC trials recruiting in China
+PF-08046054,pending,,SGN-PDL1V,"Antibody Drug Conjugate
+
+Participants will receive PF-08046054, administered as an IV infusion.",DRUG,PF-08046054,NCT07144280,1,ADC trials recruiting in China
+PF-08046876,pending,,,Intravenous administration,DRUG,PF-08046876,NCT07090499,1,ADC trials recruiting in China
+pharmacological study,pending,,,Correlative studies,OTHER,Pharmacological Study,NCT02101853,1,Bispecific antibody Phase 3 trials
+placebos,pending,,,Administered by subcutaneous injection,DRUG,Placebos,NCT04358432,1,Akeso-sponsored trials
+PLB-002,pending,,,antibody drug conjugate (ADC),DRUG,PLB-002,NCT07304128,1,ADC trials recruiting in China
+PM8002,pending,,,Following a predefined dose and date.,DRUG,PM8002,NCT06616532,1,Bispecific antibody Phase 3 trials
+Post-CR consolidation,pending,,,"① Hyper-CVAD-B (Methotrexate/Cytarabine-based):
+
+* Methotrexate (MTX): 1 g/m² IV over 24h (Day 1) with urine alkalinization (pH \>7.0) and leucovorin rescue.
+* Cytarabine (Ara-C): 1 g/m² IV q12h (Days 2-3; total 4 doses).
+* Dexamethasone: 40 mg/day (PO/IV, Days 1-4).
+* Cycle interval: 21-28 days (alternating with other regimens).
+
+  ② CAM Regimen:
+* CTX: 750 mg/m² IV (split over 2 days).
+* Ara-C: ",DRUG,Post-CR Consolidation Regimens,NCT07059156,1,Bispecific antibody Phase 3 trials
+Post-CR treatment,pending,,,"Principles:
+
+1. MRD-positive or rising: Administer blinatumomab (CD19/CD3 bispecific antibody) for residual disease clearance, followed by allogeneic hematopoietic stem cell transplantation (allo-HSCT).
+2. MRD-negative/unknown: Continue multi-agent chemotherapy ± blinatumomab consolidation. Allo-HSCT for patients with high-risk clinical/genetic features.",OTHER,Post-CR Treatment,NCT07059156,1,Bispecific antibody Phase 3 trials
+Pre-Treatment,pending,,,"Indications for pre-treatment:
+
+* WBC ≥30×10⁹/L, or significant hepatosplenomegaly/lymphadenopathy.
+* Laboratory signs of tumor lysis syndrome (e.g., electrolyte abnormalities).
+
+Pre-treatment protocol:
+
+* Glucocorticoids (e.g., prednisone or dexamethasone): Prednisone 1 mg/kg/day (PO/IV) for 3-5 days.
+* Optional addition of CTX: 200 mg/m²/day IV for 3-5 days.",DRUG,Pre-Treatment Regimen,NCT07059156,1,Bispecific antibody Phase 3 trials
+prednisone),pending,,CHOP,"CHOP, IV standard dose from cycle 1 to 6",DRUG,"CHOP (cyclophosphamide, hydroxydaunorubicin [doxorubicin], Oncovin [vincristine], prednisone)",NCT06006117,1,Bispecific antibody Phase 3 trials
+prenisolone,pending,,Deltasone/Omnipred,Administered orally (PO),DRUG,Prednisone/Prenisolone,NCT06097364,1,Bispecific antibody Phase 3 trials
+QL2107,pending,,,"200 mg, Q3W,administered as an IV infusion",DRUG,QL2107,NCT07256782,1,ADC trials recruiting in China
+QLC5508,pending,,MHB088C,"2.4 mg/kg and 2.0 mg/kg, Q3W/Q2W,administered as an IV infusion",DRUG,QLC5508,NCT07256782,1,ADC trials recruiting in China
+QLS5132,pending,,,antibody drug conjugate (ADC).,DRUG,QLS5132,NCT06932094,1,ADC trials recruiting in China
+QLS5133,pending,,,antibody drug conjugate (ADC),DRUG,QLS5133,NCT07061639,1,ADC trials recruiting in China
+QLS5212,pending,,,An anti-trophoblast glycoprotein antibody-drug conjugate,DRUG,QLS5212,NCT07467629,1,ADC trials recruiting in China
+R-CHOP,pending,,,"Rituximab, Cyclophosphamide, Doxorubicin, Vincristine and Prednisone",DRUG,R-CHOP,NCT06549595,1,Bispecific antibody Phase 3 trials
+R-CVP,pending,,,"Rituximab, Cyclophosphamide, Vincristine and Prednisone",DRUG,R-CVP,NCT06549595,1,Bispecific antibody Phase 3 trials
+R-mini-CHOP,pending,,,"Intravenous administration: Rituximab 375 mg/m2, Cyclophosphamide 400 mg/m2, Doxorubicin 25 mg/m2, Vincristine 1 mg, and Oral administration: Prednisone 40 mg/m2",DRUG,R-mini-CHOP,NCT07215585,1,Bispecific antibody Phase 3 trials
+rabies vaccine,pending,,,The Chinese licensed freeze-dried rabies vaccine produced by CHENGDA PHARMACEUTICALS for human use (Vero Cells) which is indicated for the rabies Post-exposure Prophylaxis (PEP) .,BIOLOGICAL,Rabies Vaccine,NCT05846568,1,Bispecific antibody Phase 3 trials
+randomization,pending,,,Rando 1 : BLINA will be given at 28 µg/day IVC from D1 to D28 for 2 to 4 cycles (first cycle starts with 9 µg/day for 7 days) | Rando 3 : standard of care | Rando 3 : ISA will be given at 10 mg/kg IV for a maximum of 28 infusions starting at induction up to maintenance phase.,DRUG; OTHER,Randomization + Blinatumomab + Ponatinib + chemotherapy | Randomization + Blinatumomab + chemotherapy | Randomization + Isatuximab + Standard frontline T-ALL chemotherapy backbone | Randomization + Standard frontline T-ALL chemotherapy backbone | Randomization 1 + Allo HSCT,NCT06860269,1,Bispecific antibody Phase 3 trials
+RC108,pending,,RC108 For Injection；,RC108 in Combination With Furmonertinib,DRUG,RC108,NCT06962865,1,ADC trials recruiting in China
+RC48,pending,,,"RC48, 2.5 mg/kg, on day 1, every 3 weeks; Carboplatin, AUC 5-6, on day 1, every 3 weeks; q3w, with a maximum of 6 cycles.",DRUG,RC48 + Carboplatin,NCT07285941,1,ADC trials recruiting in China
+rescue medication,pending,,,"Includes 5-HT3 receptor antagonist, NK-1 receptor antagonist, and corticosteroid, administered per approved product label",DRUG,Rescue Medication,NCT07405151,1,ADC trials recruiting in China
+rescue medications,pending,,,"Participants will receive rescue medications at the investigator's discretion. Recommended rescue medications include tocilizumab for treatment of cytokine release syndrome (CRS); dexamethasone, acetaminophen, and diphenhydramine for CRS/infusion-related reaction (IRR) prophylaxis; and 5-hydroxytryptamine 3 (5-HT3) receptor antagonist, neurokinin 1 (NK-1) receptor antagonist, and corticosteroid fo",DRUG,Rescue Medications,NCT07227597,1,ADC trials recruiting in China
+sample,pending,,,"Blood, Tumour will be Collected from participant. Fate of sample is Destruction after use.
+
+5 ml of peripheral blood was collected the day before each of the immunotherapy sessions and after surgery.
+
+Tumour sample will be collected before neoadjuvant therapy and during surgery.",OTHER,Sample,NCT07244978,1,Ivonescimab (all names)
+SHR-4602,pending,,,an anti-HER2 ADC,DRUG,SHR-4602,NCT05582499,1,ADC trials recruiting in China; Ivonescimab (all names)
+SHR-A2009,pending,,,"A HER3-directed ADC, via intravenous (into the vein) infusion per protocol.",DRUG,SHR-A2009,NCT06649331,1,ADC trials recruiting in China
+SHR-A2102,pending,,,"A Nectin4-directed ADC, via intravenous (into the vein) infusion per protocol.",DRUG,SHR-A2102,NCT06649331,1,ADC trials recruiting in China
+sinovac PCV13 lot,pending,,,One dose of Sinovac PCV13 lot 1 (0.5ml) was administered | One dose of Sinovac PCV13 lot 2 (0.5ml) was administered | One dose of Sinovac PCV13 lot 3(0.5ml) was administered,BIOLOGICAL,Sinovac PCV13 lot 1 | Sinovac PCV13 lot 2 | Sinovac PCV13 lot 3,NCT07832500,1,ADC trials recruiting in China
+SKB315,pending,,,SKB315 for injection is an Antibody Drug Conjugates (ADC) drug targeting Claudin18.2. The strength of SKB315 is 200 mg/vial.,DRUG,SKB315 for injection,NCT05367635,1,ADC trials recruiting in China
+SKB518,pending,,,"SKB518 is administered every 3 weeks(Q3W) until radiographic disease progression, intolerable toxicity, or other protocol-specified treatment discontinuation criteria, whichever occurs first.",DRUG,SKB518,NCT07019675,1,ADC trials recruiting in China
+SMP-656,pending,,,"SMP-656 injection administered via intravenous infusion at a dose of 2.2 mg/kg once every 3 weeks (Q3W). Treatment continues until disease progression, intolerable toxicity, voluntary withdrawal, death, or trial termination.",DRUG,SMP-656 Injection,NCT07726342,1,ADC trials recruiting in China
+SOX chemotherapy,pending,,,A combination treatment made up of oxaliplatin and tegafur-gimeracil-oteracil potassium,DRUG,SOX chemotherapy,NCT07023315,1,Akeso-sponsored trials; Bispecific antibody Phase 3 trials
+SSGJ-612,pending,,,Intravenous injection,DRUG,SSGJ-612 (HER2-targeted antibody),NCT07757230,1,ADC trials recruiting in China
+standard,pending,,,"For ctDNA-positive patients, continuing the original immunotherapy maintenance or immunotherapy combined with chemotherapy",OTHER,Standard Treatment group,NCT06951646,1,Akeso-sponsored trials; Ivonescimab (all names)
+standard frontline T-ALL chemotherapy backbone,pending,,,Rando 3 : standard of care | Rando 3 : ISA will be given at 10 mg/kg IV for a maximum of 28 infusions starting at induction up to maintenance phase.,DRUG; OTHER,Randomization + Isatuximab + Standard frontline T-ALL chemotherapy backbone | Randomization + Standard frontline T-ALL chemotherapy backbone,NCT06860269,1,Bispecific antibody Phase 3 trials
+STI-6129,pending,,,Anti-CD38 A2 human antibody drug conjugate (ADC) containing an antibody covalently bound to a duostatin tubulin inhibitor.,BIOLOGICAL,STI-6129,NCT05565807,1,ADC trials recruiting in China
+SYD985 trastuzumab duocarmazine),pending,,,"Arm is closed.
+
+SYD985: 1.2 mg/kg IV (q3w x 12 weeks) cycles 1,4,7,10 Doxorubicin + Cyclophosphamide: Cycles 13-16; Doxorubicin: 60 mg/m2 IV Every 2 or 3 weeks for 4 cycles; Cyclophosphamide: 600 mg/m2 IV Every 2 or 3 weeks for 4 cycles",DRUG,SYD985 ([vic-]trastuzumab duocarmazine),NCT01042379,1,Ivonescimab (all names)
+SYS6041,pending,,,Farletuzumab-exatecan antibody-drug conjugate targeting human FRα,DRUG,SYS6041,NCT07744763,1,ADC trials recruiting in China
+SYS6043,pending,,,Subcutaneous injection,DRUG,SYS6043,NCT07415863,1,ADC trials recruiting in China
+SYS6088,pending,,,"SYS6088, administered per protocol.",DRUG,SYS6088,NCT07857135,1,Ivonescimab (all names)
+systemic therapy,pending,,,"Systemic therapy /Standard of Care will be determined at the investigator's discretion, in accordance with clinical guidelines and individual patient characteristics.",DRUG,Systemic Therapy/Standard of Care,NCT07481799,1,ADC trials recruiting in China
+tagitanlimab Drug: capecitabine,pending,,,,DRUG,Drug: Tagitanlimab Drug: Capecitabine,NCT05367635,1,ADC trials recruiting in China
+TAK-928,pending,,,TAK-928 will be administered by IV infusion.,DRUG,TAK-928,NCT07217301,1,Bispecific antibody Phase 3 trials
+targeted drugs,pending,,,"Targeted drugs includes EGFR-TKIs,ALK-TKIs,Multitargeted Tyrosine Kinase Inhibitors, VEGF antibody, EGFR antibody, antibody-drug conjugates drugs",DRUG,Targeted drugs,NCT06702566,1,ADC trials recruiting in China
+tegafur-gimeracil-oteracil potassium,pending,,,"Oral,Specified dose on specified days",DRUG,Tegafur-gimeracil-oteracil potassium,NCT05960955,1,Akeso-sponsored trials
+tioguanin,pending,,,Part of standard chemotherapy,DRUG,Tioguanin,NCT03643276,1,Bispecific antibody Phase 3 trials
+TJ101,pending,,,TJ101 is a EGFR/B7H3 directed antibody conjugate with a cleavable linker and a noval topoisomerase I inhibitor.,DRUG,TJ101,NCT07181473,1,ADC trials recruiting in China
+TJ102,pending,,,TJ102 is a CDH6/FRa directed antibody conjugate with dual payloads,BIOLOGICAL,TJ102,NCT07778498,1,ADC trials recruiting in China
+TQB2101,pending,,,"TQB2101 for Injection is an ROR1 ADC, an antibody-drug conjugate. It consists of three main components: a ROR1 monoclonal antibody responsible for selectively recognizing the surface antigen of cancer cells, a small molecule toxin responsible for killing cancer cells, and a linker connecting the antibody and the small molecule toxin. It is intended for clinical use in the treatment of advanced mal",DRUG,TQB2101 for Injection,NCT07113925,1,ADC trials recruiting in China
+TQB2825,pending,,,TQB2825 is a Cluster of Differentiation 3 (CD3) × Cluster of Differentiation 20 (CD20) bispecific antibody.,DRUG,TQB2825 Injection,NCT07187960,1,Bispecific antibody Phase 3 trials
+TQB2930,pending,,,"TQB2930 injection is a HER2 bispecific antibody drug； Chemotherapy: Capecitabine Tablets, Gemcitabine Hydrochloride for Injection, Vinorelbine Tartrate Injection and Eribulin Mesylate Injection are Chemotherapy Drugs.",DRUG,TQB2930+ chemotherapy,NCT07047365,1,Bispecific antibody Phase 3 trials
+TQB2934,pending,,,TQB2934 injection is a bispecific antibody targeting B-cell maturation antigen (BCMA) and Cluster of Differentiation 3 (CD3).,DRUG,TQB2934 injection,NCT07569757,1,Bispecific antibody Phase 3 trials
+TQB6411,pending,,,"TQB6411 for injection is an antibody-conjugated drug (ADC) targeting EGFR/c-Met. After injecting intravenously, the antibody part of this product binds to the EGFR and c-Met on the surface of tumor cells to block the activation of EGFR and c-Met signaling pathways. The ADC is enrolled and transported to the lysosome through cells. The linker releases toxins after enzyme cleavage, resulting in DNA ",DRUG,TQB6411 injection,NCT07043751,1,ADC trials recruiting in China
+TRS005,pending,,,"TRS005 will be administered at a starting dose of 0.8mg/kg IV every 3 weeks (starting from Cycle 1 Day 1), for 6 cycles (up to 8).",DRUG,TRS005,NCT07035379,1,ADC trials recruiting in China
+tumor-draining lymph node-derived lymphocyte,pending,,LNL,"In the dose-escalation portion, participants receive ascending dose (1×10\^9\~18×10\^9), single Infusion of LNL on day 0. In the dose-expansion portion, participants receive single infusion of LNL at the recommended phase 2 dose (RP2D).",BIOLOGICAL,Tumor-draining lymph node-derived lymphocyte (LNL),NCT06121557,1,ADC trials recruiting in China
+VBC103,pending,,,VBC103,DRUG,VBC103,NCT07299747,1,ADC trials recruiting in China
+VBC108,pending,,,VBC108,DRUG,VBC108,NCT07700160,1,ADC trials recruiting in China
+VBC117,pending,,,VBC117 is a epidermal growth factor receptor (EGFR)x Cadherin-17 (CDH17) bispecific antibody-drug conjugate (ADC).,DRUG,VBC117,NCT07772934,1,ADC trials recruiting in China
+VG2025,pending,,,"Recommended Phase II Dose, Intratumoral Injection, Q4W",BIOLOGICAL,VG2025,NCT07357220,1,Akeso-sponsored trials; Ivonescimab (all names)
+vincrisitne,pending,,,1.5 mg/m\^2/day IV on Days 1 and 6,DRUG,Vincrisitne,NCT02393859,1,Bispecific antibody Phase 3 trials
+VV1,pending,,VOYAGER V1™; VSV-IFNβ-NIS,"Arm is closed.
+
+VV1, 3x10\^9 TCID50 once (day-8), Intra-tumoral injection Cemiplimab, 350 mg Q3W, IV for 12 weeks",DRUG,VV1 + Cemiplimab,NCT01042379,1,Ivonescimab (all names)
+YL202 should be infused,pending,,,"For each patient, YL202 should be intravenously infused over 60±10 min.",DRUG,YL202 should be intravenously infused,NCT06107686,1,ADC trials recruiting in China
+ZL-1310,pending,,,ZL-1310 as a single-agent,DRUG,ZL-1310,NCT07218146,1,ADC trials recruiting in China
+zoldonrasib,pending,,,oral tablets,DRUG,Zoldonrasib,NCT07397338,1,Ivonescimab (all names)

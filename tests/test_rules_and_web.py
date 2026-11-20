@@ -76,3 +76,26 @@ def test_short_labels():
     assert T.short_label(T.ADC) == "ADC"
     assert T.short_label(T.CELL_THERAPY, "CAR-T", "CD19") == "CD19 CAR-T"
     assert T.short_label(T.SMALL_MOLECULE, "degrader/PROTAC", "ER") == "ER degrader"
+
+
+@pytest.mark.parametrize("name, modality, sub", [
+    ("delpacibart etedesiran", T.AOC, ""),
+    ("talimogene laherparepvec", T.ONCOLYTIC_VIRUS, ""),
+    ("onasemnogene abeparvovec", T.GENE_THERAPY, "AAV"),
+])
+def test_more_stem_rules(name, modality, sub):
+    hit = classify_by_name(name)
+    assert (hit.modality, hit.sub_modality) == (modality, sub)
+
+
+def test_web_pause_avoids_saving_not_found(monkeypatch):
+    import httpx
+    from app import weblookup
+
+    def handler(request):
+        return httpx.Response(429, headers={"Retry-After": "5"})
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    monkeypatch.setattr(weblookup, "_paused_until", {})
+    with pytest.raises(weblookup.TemporarilyUnavailable):
+        weblookup._fetch("somedrugname", client)
+    assert not weblookup._available("wikidata") and not weblookup._available("wikipedia")

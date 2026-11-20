@@ -1,1 +1,5 @@
 name,query_term,condition,intervention,sponsor,location,status,phase
+Ivonescimab (all names),,,ivonescimab,,,,
+Akeso-sponsored trials,,,,Akeso,,,
+ADC trials recruiting in China,antibody drug conjugate,,,,China,RECRUITING;NOT_YET_RECRUITING,
+Bispecific antibody Phase 3 trials,bispecific antibody,,,,,,PHASE3

@@ -10,7 +10,10 @@ based on, and are cached on disk.
 """
 from __future__ import annotations
 
+import os
 import re
+import threading
+import time
 from dataclasses import dataclass
 from urllib.parse import quote
 
@@ -22,7 +25,11 @@ from app.names import name_key
 
 WIKIDATA_API = "https://www.wikidata.org/w/api.php"
 WIKIPEDIA_SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/"
-HEADERS = {"User-Agent": "trial-modality-finder/0.1 (open-source research tool)"}
+# Wikimedia asks automated tools to say who they are (a website or email). Set
+# WIKIMEDIA_CONTACT (environment or Streamlit secrets) to e.g. the app's GitHub URL.
+CONTACT = os.environ.get("WIKIMEDIA_CONTACT", "").strip()
+HEADERS = {"User-Agent": "ClinicalTrialModalityFinder/0.1 (free research tool"
+                         + (f"; {CONTACT}" if CONTACT else "") + ") python-httpx"}
 TIMEOUT = 20.0
 
 # Phrases in a Wikipedia first sentence, most specific first.
@@ -128,8 +135,35 @@ def _get_json(client: httpx.Client, url: str, params: dict | None = None) -> dic
     return r.json()
 
 
-def _fetch(name: str, client: httpx.Client) -> dict | None:
-    """Return {"wikidata_id", "labels", "wiki_title", "extract"} or None."""
+class TemporarilyUnavailable(Exception):
+    """A source is pausing us; don't save a "not found" answer."""
+
+
+_pause_lock = threading.Lock()
+_paused_until: dict[str, float] = {}         # source -> time we may ask again
+_web_slots = threading.Semaphore(2)          # at most 2 web lookups at once
+PAUSE_SECONDS = 300          # when the site doesn't say how long to wait
+MIN_PAUSE_SECONDS = 60
+
+
+def _available(source: str) -> bool:
+    with _pause_lock:
+        return time.time() >= _paused_until.get(source, 0)
+
+
+def _pause(source: str, response: httpx.Response | None = None) -> None:
+    wait = PAUSE_SECONDS
+    try:
+        if response is not None and response.headers.get("Retry-After"):
+            wait = max(MIN_PAUSE_SECONDS, int(float(response.headers["Retry-After"])))
+    except ValueError:
+        pass
+    with _pause_lock:
+        _paused_until[source] = time.time() + wait
+
+
+def _wikidata(name: str, client: httpx.Client) -> tuple[str, list[str], str]:
+    """(Wikidata id, "instance of" labels, English Wikipedia title) - empty if not found."""
     found = _get_json(client, WIKIDATA_API, {
         "action": "wbsearchentities", "search": name, "language": "en", "format": "json", "limit": 3})
     candidates = (found or {}).get("search") or []
@@ -137,33 +171,69 @@ def _fetch(name: str, client: httpx.Client) -> dict | None:
     match = next((c for c in candidates
                   if name_key(name) in {name_key(c.get("label", "")), name_key((c.get("match") or {}).get("text", ""))}),
                  None)
+    if not match:
+        return "", [], ""
+    qid = match["id"]
+    ent = _get_json(client, WIKIDATA_API, {
+        "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "sitefilter": "enwiki",
+        "format": "json"})
+    entity = ((ent or {}).get("entities") or {}).get(qid, {})
+    title = ((entity.get("sitelinks") or {}).get("enwiki") or {}).get("title", "")
+    ids = [c["mainsnak"]["datavalue"]["value"]["id"]
+           for p in ("P31", "P279") for c in (entity.get("claims") or {}).get(p, [])
+           if "datavalue" in c.get("mainsnak", {})]
     labels: list[str] = []
-    title = ""
-    qid = ""
-    if match:
-        qid = match["id"]
-        ent = _get_json(client, WIKIDATA_API, {
-            "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "sitefilter": "enwiki",
+    if ids:
+        lab = _get_json(client, WIKIDATA_API, {
+            "action": "wbgetentities", "ids": "|".join(ids[:20]), "props": "labels", "languages": "en",
             "format": "json"})
-        entity = ((ent or {}).get("entities") or {}).get(qid, {})
-        title = ((entity.get("sitelinks") or {}).get("enwiki") or {}).get("title", "")
-        ids = [c["mainsnak"]["datavalue"]["value"]["id"]
-               for p in ("P31", "P279") for c in (entity.get("claims") or {}).get(p, [])
-               if "datavalue" in c.get("mainsnak", {})]
-        if ids:
-            lab = _get_json(client, WIKIDATA_API, {
-                "action": "wbgetentities", "ids": "|".join(ids[:20]), "props": "labels", "languages": "en",
-                "format": "json"})
-            labels = [v.get("labels", {}).get("en", {}).get("value", "")
-                      for v in ((lab or {}).get("entities") or {}).values()]
-    summary = _get_json(client, WIKIPEDIA_SUMMARY + quote((title or name).replace(" ", "_"), safe=""))
+        labels = [v.get("labels", {}).get("en", {}).get("value", "")
+                  for v in ((lab or {}).get("entities") or {}).values()]
+    return qid, [l for l in labels if l], title
+
+
+def _fetch(name: str, client: httpx.Client) -> dict | None:
+    """Return {"wikidata_id", "labels", "wiki_title", "extract"} or None.
+
+    Raises TemporarilyUnavailable if a source was pausing us and nothing was found,
+    so the empty answer isn't saved.
+    """
+    skipped = False
+    qid, labels, title = "", [], ""
+    if _available("wikidata"):
+        try:
+            qid, labels, title = _wikidata(name, client)
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code != 429 and e.response.status_code < 500:
+                raise
+            _pause("wikidata", e.response)
+            skipped = True
+        except httpx.TransportError:
+            skipped = True
+    else:
+        skipped = True
+
     extract = ""
-    if summary and summary.get("type") != "disambiguation":
-        extract = summary.get("extract") or ""
-        title = summary.get("title") or title
+    if _available("wikipedia"):
+        try:
+            page = title or (name.capitalize() if name.isupper() and not re.search(r"\d", name) else name)
+            summary = _get_json(client, WIKIPEDIA_SUMMARY + quote(page.replace(" ", "_"), safe=""))
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code != 429 and e.response.status_code < 500:
+                raise
+            _pause("wikipedia", e.response)
+            summary, skipped = None, True
+        if summary and summary.get("type") != "disambiguation":
+            extract = summary.get("extract") or ""
+            title = summary.get("title") or title
+    else:
+        skipped = True
+
     if not (labels or extract):
+        if skipped:
+            raise TemporarilyUnavailable(name)
         return None
-    return {"wikidata_id": qid, "labels": [l for l in labels if l], "wiki_title": title, "extract": extract}
+    return {"wikidata_id": qid, "labels": labels, "wiki_title": title, "extract": extract}
 
 
 def lookup(name: str, client: httpx.Client | None = None) -> WebHit | None:
@@ -174,8 +244,9 @@ def lookup(name: str, client: httpx.Client | None = None) -> WebHit | None:
     own = client is None
     c = client or httpx.Client(timeout=TIMEOUT, headers=HEADERS, follow_redirects=True)
     try:
-        data = cache.cached("web", name, lambda: _fetch(name, c))
-    except (httpx.HTTPError, ValueError, KeyError, TypeError):
+        with _web_slots:
+            data = cache.cached("web", name, lambda: _fetch(name, c))
+    except (TemporarilyUnavailable, httpx.HTTPError, ValueError, KeyError, TypeError):
         return None
     finally:
         if own:

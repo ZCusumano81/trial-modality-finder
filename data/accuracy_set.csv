@@ -1,0 +1,31 @@
+drug,expected_modality,expected_sub_modality
+pembrolizumab,Monoclonal antibody,
+nivolumab,Monoclonal antibody,
+trastuzumab deruxtecan,Antibody-drug conjugate (ADC),
+trastuzumab emtansine,Antibody-drug conjugate (ADC),
+sacituzumab govitecan,Antibody-drug conjugate (ADC),
+enfortumab vedotin,Antibody-drug conjugate (ADC),
+osimertinib,Small molecule,
+olaparib,Small molecule,
+vepdegestrant,Small molecule,degrader/PROTAC
+ivonescimab,Bispecific/multispecific antibody,
+cadonilimab,Bispecific/multispecific antibody,
+blinatumomab,Bispecific/multispecific antibody,
+delpacibart etedesiran,Antibody-oligonucleotide conjugate (AOC),
+aflibercept,Fusion protein / other recombinant protein,
+semaglutide,Peptide,
+pegcetacoplan,Peptide,
+alglucosidase alfa,Enzyme,
+inclisiran,Oligonucleotide,siRNA
+patisiran,Oligonucleotide,siRNA
+nusinersen,Oligonucleotide,ASO
+pegaptanib,Oligonucleotide,aptamer
+mRNA-3927,mRNA/RNA therapeutic,
+tisagenlecleucel,Cell therapy,CAR-T
+axicabtagene ciloleucel,Cell therapy,CAR-T
+lifileucel,Cell therapy,TIL
+onasemnogene abeparvovec,Gene therapy,AAV
+exagamglogene autotemcel,Gene editing,
+talimogene laherparepvec,Oncolytic virus,
+tozinameran,Vaccine,
+lutetium Lu 177 vipivotide tetraxetan,Radiopharmaceutical,

@@ -135,6 +135,26 @@ deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
 - After I review, merge reviewed rows into modalities.csv, run the tests, and
   commit and push.
 
+## Curation tools (Stage 6)
+- `uv run python scripts/find_unknowns.py [--max 200] [--include-low]` runs
+  data/saved_searches.csv and writes data/unknown_agents.csv (pending agents,
+  most trials first; --include-low adds low-confidence web/rule calls). Agents
+  already in data/proposed_modalities.csv are skipped.
+- Curation session: read data/unknown_agents.csv (the description column often
+  says what the drug is), web-search each agent, write rows to
+  data/proposed_modalities.csv with the modalities.csv columns, reviewed = "no",
+  confidence "low" when evidence is thin. Never guess.
+- After the owner sets reviewed = "yes": `uv run python scripts/merge_reviewed.py
+  --dry-run`, then without --dry-run; it validates modality names against the
+  taxonomy. Then run the tests, commit and push.
+- 30-drug accuracy set: data/accuracy_set.csv. `uv run python
+  scripts/accuracy_report.py [--automatic]`. With the curated table: 30/30;
+  automatic only (ChEMBL + rules, web rate-limited): 24/30 on 2026-11-20.
+- Wikimedia (Wikipedia/Wikidata) rate-limits anonymous tools. Set
+  WIKIMEDIA_CONTACT (env or Streamlit secrets) to the app's public URL; never
+  put the owner's email there without asking. app/weblookup.py pauses a source
+  after a 429 and never caches "not found" while a source was paused.
+
 ## Quality
 - pytest tests, including a set of 30 well-known drugs with expected
   modalities across the taxonomy (e.g., pembrolizumab, trastuzumab deruxtecan,

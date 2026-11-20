@@ -35,6 +35,17 @@ The "Suggest a correction" link appears once a corrections email address is set:
 add `CORRECTIONS_EMAIL = "you@example.org"` to `.streamlit/secrets.toml` (locally)
 or to the app's Secrets on Streamlit Community Cloud.
 
+## Curating drugs the app can't classify
+
+1. `uv run python scripts/find_unknowns.py` lists unclassified drugs from the
+   searches in `data/saved_searches.csv` into `data/unknown_agents.csv`.
+2. In Claude Code, ask: "classify the unknown agents" - Claude researches them
+   and writes `data/proposed_modalities.csv`.
+3. Open that file, check each row, and set `reviewed` to `yes` for the ones you accept.
+4. Ask Claude to merge them (it runs `scripts/merge_reviewed.py`), run the tests, and publish.
+
+`uv run python scripts/accuracy_report.py` checks 30 well-known drugs.
+
 ## What's in this folder
 
 | Path | What it is |

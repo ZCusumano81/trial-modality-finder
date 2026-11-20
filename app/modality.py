@@ -125,13 +125,16 @@ def classify_agent(original: str, names: list[str], *, online: bool = True,
         if not hit:
             call.modality, call.sub_modality, call.source = rule.modality, rule.sub_modality, "name rule"
             call.confidence, call.evidence = "low", rule.evidence
-        elif rule.modality in T.REFINES.get(call.modality, set()):
+        elif rule.modality in T.REFINES.get(call.modality, set()) or rule.modality == T.RADIOPHARMACEUTICAL:
             call.modality, call.sub_modality, call.source = rule.modality, rule.sub_modality, "chembl + name rule"
             call.evidence += f"; refined by {rule.evidence}"
+        elif rule.modality == call.modality and rule.sub_modality and not call.sub_modality:
+            call.sub_modality, call.source = rule.sub_modality, "chembl + name rule"
+            call.evidence += f"; sub-type from {rule.evidence}"
 
     # 4. Web lookup when nothing found, or only a broad answer
     if online and (call.pending or (call.modality in BROAD and not call.sub_modality)):
-        web_names = _unique([*(([hit.pref_name]) if hit else []), *names])[:3]
+        web_names = _unique([*(([_display_name(hit.pref_name)]) if hit else []), *names])[:3]
         for n in web_names:
             if (web := weblookup.lookup(n)):
                 if call.pending:

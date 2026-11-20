@@ -31,6 +31,7 @@ SOC_PATTERN = re.compile(
 NON_DRUG_PATTERN = re.compile(
     r"\b(?:radiotherapy|radiation|irradiation|SBRT|SABR|SCRT|IMRT|SRS|SRT|proton therapy|brachytherapy|"
     r"surgery|surgical|resection|operation|non[- ]operative|HAIC|TACE|RFA|ablation|transplant(?:ation)?|"
+    r"(?:allo|auto)?[- ]?HS?CT|stem cell transplant\w*|"
     r"questionnaire|survey|interview|assessment|management|education|counsel+ing|exercise|"
     r"biopsy|blood (?:draw|sample)|sample collection|imaging|PET|MRI|CT scan|ultrasound|ctDNA|"
     r"data collection|follow[- ]up|observation)\b|\b(?:group|cohort)\s*$",
@@ -70,7 +71,7 @@ FORM_WORDS = re.compile(
 )
 COMBO_SPLIT = re.compile(
     r"\s*(?:\bwith or without\b|\bwith/without\b|\bor\b|\+/-|±|\+|＋|\bplus\b|\bin combination with\b|\bcombined with\b|\bcombination with\b|"
-    r"\bfollowed by\b|\bwith\b|\band\b|;|&|,(?!\d)|(?<=[a-z]{3})/(?=[A-Za-z]{3}))\s*",
+    r"\bfollowed by\b|\bwith\b|\band\b|;|&|,(?!\d)|(?<=[a-z]{3})\s*/\s*(?=[A-Za-z]{3}))\s*",
     re.I,
 )
 PARENS = re.compile(r"[\(\[]([^\)\]]*)[\)\]]")

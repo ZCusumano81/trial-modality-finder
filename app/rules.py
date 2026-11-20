@@ -29,7 +29,9 @@ STEM_RULES = [
     (r"mig$", T.BISPECIFIC, "", "-mig: multi-specific immunoglobulin"),
     (r"(?:mab|tug|bart)$", T.MAB, "", "-mab / -tug / -bart: monoclonal antibody"),
     (r"(?:cel|leucel|temcel)$", T.CELL_THERAPY, "", "-cel: cell therapy"),
-    (r"(?:parvovec|repvec|vec)$", T.GENE_THERAPY, "", "-vec: gene therapy vector"),
+    (r"repvec$", T.ONCOLYTIC_VIRUS, "", "-repvec: replicating viral vector (oncolytic virus)"),
+    (r"parvovec$", T.GENE_THERAPY, "AAV", "-parvovec: AAV (parvovirus) gene therapy vector"),
+    (r"(?:gaviruvec|vec)$", T.GENE_THERAPY, "", "-vec: gene therapy vector"),
     (r"rsen$", T.OLIGONUCLEOTIDE, "ASO", "-rsen: antisense oligonucleotide"),
     (r"siran$", T.OLIGONUCLEOTIDE, "siRNA", "-siran: small interfering RNA"),
     (r"cept$", T.FUSION_PROTEIN, "", "-cept: receptor fusion protein"),
@@ -73,7 +75,8 @@ CLASS_PHRASES: list[tuple[str, str, str]] = [
     (r"\b(?:PD-?1|PD-?L1|CTLA-?4|LAG-?3|TIGIT)\b.*\b(?:inhibitors?|antibod(?:y|ies)|blockade|blockers?|mAbs?)\b",
      T.MAB, ""),
     (r"\b(?:TKIs?|tyrosine kinase inhibitors?|(?:PARP|CDK4/6|aromatase|mTOR|BTK|JAK|KRAS(?: G12[CD])?) inhibitors?|"
-     r"AR antagonists?|anti-?androgens?|antiandrogens?|platinum|taxanes?|anthracyclines?|fluoropyrimidines?)\b",
+     r"AR antagonists?|anti-?androgens?|antiandrogens?|platinum|taxanes?|anthracyclines?|fluoropyrimidines?|"
+     r"statins?|bisphosphonates?|corticosteroids?|steroids?)\b",
      T.SMALL_MOLECULE, ""),
 ]
 
@@ -98,6 +101,10 @@ def classify_by_name(name: str) -> RuleHit | None:
         return RuleHit(T.CELL_THERAPY, "CAR-T", "-cabtagene: CAR-T cell therapy")
     # INN convention: an antibody name followed by a payload word is a conjugate
     # ("telisotuzumab adizutecan"), unless the second word is a PEG or protein suffix.
+    if (len(words) == 2 and re.search(r"(?:mab|bart|tug)$", words[0])
+            and re.search(r"(?:siran|rsen)$", words[1])):
+        return RuleHit(T.AOC, "", f'Antibody name followed by an oligonucleotide name ("{words[1]}"): '
+                                  "antibody-oligonucleotide conjugate")
     if len(words) == 2 and words[0].endswith("mab") and len(words[1]) >= 6:
         if words[1] in NON_PAYLOAD_SECOND_WORDS:
             # e.g. "nivolumab hyaluronidase" (subcutaneous form): still the antibody.

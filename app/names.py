@@ -27,6 +27,15 @@ SOC_PATTERN = re.compile(
     r"active surveillance|watchful waiting|no (?:intervention|treatment))\b",
     re.I,
 )
+# Things typed as a "drug" that are really procedures, radiotherapy or study activities.
+NON_DRUG_PATTERN = re.compile(
+    r"\b(?:radiotherapy|radiation|irradiation|SBRT|SABR|SCRT|IMRT|SRS|SRT|proton therapy|brachytherapy|"
+    r"surgery|surgical|resection|operation|non[- ]operative|HAIC|TACE|RFA|ablation|transplant(?:ation)?|"
+    r"questionnaire|survey|interview|assessment|management|education|counsel+ing|exercise|"
+    r"biopsy|blood (?:draw|sample)|sample collection|imaging|PET|MRI|CT scan|ultrasound|ctDNA|"
+    r"data collection|follow[- ]up|observation)\b|\b(?:group|cohort)\s*$",
+    re.I,
+)
 # Generic regimen words with no specific drug ("platinum-based chemotherapy").
 GENERIC_REGIMEN = re.compile(
     r"^(?:(?:platinum|platinum[- ]based|investigator'?s choice|standard|systemic|adjuvant|"
@@ -47,22 +56,33 @@ DOSE = re.compile(
 DOSE_WORDS = re.compile(
     r"\b(?:dose\s*(?:level\s*)?\d+|dose\s*[a-z]\b|high[- ]dose|low[- ]dose|mid[- ]dose|fixed[- ]dose|"
     r"RP[123]D|MTD|cohort\s*\w+|arm\s*\w+|part\s*\w+|level\s*\d+|regimen\s*\w+|q[1-9]w|q\d+d|"
-    r"Q[1-9]W|BID|QD|TID|QW|Q2W|Q3W|Q4W|once daily|twice daily|weekly|daily|monthly)\b",
+    r"Q[1-9]W|BID|QD|TID|QW|Q2W|Q3W|Q4W|once daily|twice daily|weekly|daily|monthly|"
+    r"(?:treatment |study |experimental |control |\w+-line )?(?:group|arm)$|regimen$|protocol$)\b",
     re.I,
 )
 FORM_WORDS = re.compile(
     r"\b(?:for injection|injection|infusion|tablets?|capsules?|oral solution|oral suspension|"
     r"solution|suspension|intravenous(?:ly)?|subcutaneous(?:ly)?|intramuscular|i\.?v\.?|s\.?c\.?|"
     r"p\.?o\.?|oral(?:ly)?|lyophili[sz]ed powder|powder|film[- ]coated|extended[- ]release|"
-    r"sustained[- ]release)\b",
+    r"sustained[- ]release|liposom(?:e|al)|albumin[- ]bound|protein[- ]bound|nanoparticle albumin[- ]bound|"
+    r"polymeric micelles?|micelles?|nanoparticles?|-?albumin|for oral use)\b|\bnab-(?=[a-z])",
     re.I,
 )
 COMBO_SPLIT = re.compile(
-    r"\s*(?:\+|＋|\bplus\b|\bin combination with\b|\bcombined with\b|\bcombination with\b|"
-    r"\bfollowed by\b|\bwith\b|\band\b|;|&)\s*",
+    r"\s*(?:\bwith or without\b|\bwith/without\b|\bor\b|\+/-|±|\+|＋|\bplus\b|\bin combination with\b|\bcombined with\b|\bcombination with\b|"
+    r"\bfollowed by\b|\bwith\b|\band\b|;|&|,(?!\d)|(?<=[a-z]{3})/(?=[A-Za-z]{3}))\s*",
     re.I,
 )
 PARENS = re.compile(r"[\(\[]([^\)\]]*)[\)\]]")
+
+
+FULLWIDTH = str.maketrans({"（": "(", "）": ")", "，": ",", "、": ",", "；": ";", "：": ":", "＋": "+",
+                           "／": "/", "－": "-", "　": " "})
+
+
+def normalize_punctuation(text: str) -> str:
+    """Turn Chinese/Japanese full-width punctuation into the plain kind."""
+    return text.translate(FULLWIDTH)
 
 
 def name_key(name: str) -> str:
@@ -83,7 +103,7 @@ def _tidy(text: str) -> str:
     text = FORM_WORDS.sub(" ", text)
     # Trailing bare numbers after a space ("Erlotinib 150/100") - but keep code
     # names like "MK-3475" or "177Lu-PSMA-617", where the number follows a hyphen.
-    text = re.sub(r"(?<=[A-Za-z)])\s+\d+(?:[.,]\d+)?(?:\s*/\s*\d+(?:[.,]\d+)?)*\s*$", " ", text)
+    text = re.sub(r"(?<=[a-z)])\s+\d+(?:[.,]\d+)?(?:\s*/\s*\d+(?:[.,]\d+)?)*\s*$", " ", text)
     text = re.sub(r"[,:/]+\s*$", " ", text)
     text = re.sub(r"^\s*[,:/-]+", " ", text)
     text = re.sub(r"\s+", " ", text).strip(" -–,.;:/")
@@ -95,6 +115,7 @@ def split_agents(raw_name: str) -> list[str]:
 
     Parenthetical text is kept attached so candidate_names can use it as an alias.
     """
+    raw_name = normalize_punctuation(raw_name)
     # Don't split inside parentheses: protect them first.
     protected: list[str] = []
 
@@ -118,7 +139,8 @@ def candidate_names(agent_text: str) -> list[str]:
 
     "Trastuzumab deruxtecan (T-DXd)" -> ["Trastuzumab deruxtecan", "T-DXd"]
     """
-    aliases = [_tidy(a) for a in PARENS.findall(agent_text)]
+    agent_text = normalize_punctuation(agent_text)
+    aliases = [_tidy(a) for inner in PARENS.findall(agent_text) for a in re.split(r",(?!\d)", inner)]
     main = _tidy(PARENS.sub(" ", agent_text))
     names = []
     for n in [main, *aliases]:
@@ -127,11 +149,23 @@ def candidate_names(agent_text: str) -> list[str]:
     return names
 
 
+CODE_NAME = re.compile(r"^([A-Za-z]{2,6})[\s-]?(\d{2,7}[A-Za-z]?\d*)$")
+
+
+def code_variants(name: str) -> list[str]:
+    """"AMG 386" -> ["AMG-386", "AMG386", "AMG 386"] (registries write code names differently)."""
+    m = CODE_NAME.match(name.strip())
+    if not m:
+        return []
+    a, b = m.groups()
+    return [v for v in (f"{a}-{b}", f"{a}{b}", f"{a} {b}") if v != name.strip()]
+
+
 def role_of(agent_text: str, intervention_type: str = "") -> str:
     """Is this agent a real drug, a placebo, standard of care, or not a drug at all?"""
     if PLACEBO_PATTERN.search(agent_text):
         return PLACEBO
-    if intervention_type.upper() in NON_DRUG_TYPES:
+    if intervention_type.upper() in NON_DRUG_TYPES or NON_DRUG_PATTERN.search(agent_text):
         return NON_DRUG
     if SOC_PATTERN.search(agent_text) or GENERIC_REGIMEN.match(agent_text.strip()):
         return STANDARD_OF_CARE

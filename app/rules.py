@@ -52,9 +52,42 @@ _INN_LIKE =re.compile(r"^[A-Za-z][A-Za-z\-]+(?: [A-Za-z][A-Za-z\-]+){0,3}$")
 _ENZYME_SUFFIX = re.compile(r"\b\w+ase (?:alfa|beta|gamma)\b", re.I)
 
 
+# Chemotherapy regimens written as abbreviations: all small-molecule drugs.
+REGIMENS = {
+    "folfox": "fluorouracil + leucovorin + oxaliplatin", "mfolfox6": "fluorouracil + leucovorin + oxaliplatin",
+    "folfiri": "fluorouracil + leucovorin + irinotecan", "folfirinox": "fluorouracil + leucovorin + irinotecan + oxaliplatin",
+    "mfolfirinox": "fluorouracil + leucovorin + irinotecan + oxaliplatin",
+    "capeox": "capecitabine + oxaliplatin", "capox": "capecitabine + oxaliplatin", "xelox": "capecitabine + oxaliplatin",
+    "xeliri": "capecitabine + irinotecan", "gemox": "gemcitabine + oxaliplatin", "sox": "S-1 + oxaliplatin",
+    "gp": "gemcitabine + cisplatin/carboplatin", "gc": "gemcitabine + cisplatin", "tp": "paclitaxel + cisplatin/carboplatin",
+    "tc": "paclitaxel/docetaxel + carboplatin", "ec": "epirubicin + cyclophosphamide", "ac": "doxorubicin + cyclophosphamide",
+    "flot": "fluorouracil + leucovorin + oxaliplatin + docetaxel", "ep": "etoposide + cisplatin",
+    "s1": "tegafur + gimeracil + oteracil", "tas102": "trifluridine + tipiracil", "tegafur": "tegafur",
+    "nabpaclitaxel": "albumin-bound paclitaxel",
+}
+# Phrases that name a drug class rather than a specific drug ("TROP2 ADC", "PD-1 inhibitors").
+CLASS_PHRASES: list[tuple[str, str, str]] = [
+    (r"\bADCs?\b|antibody[- ]drug conjugate", T.ADC, ""),
+    (r"\bbispecific", T.BISPECIFIC, ""),
+    (r"\bCAR[- ]?T\b", T.CELL_THERAPY, "CAR-T"),
+    (r"\b(?:PD-?1|PD-?L1|CTLA-?4|LAG-?3|TIGIT)\b.*\b(?:inhibitors?|antibod(?:y|ies)|blockade|blockers?|mAbs?)\b",
+     T.MAB, ""),
+    (r"\b(?:TKIs?|tyrosine kinase inhibitors?|(?:PARP|CDK4/6|aromatase|mTOR|BTK|JAK|KRAS(?: G12[CD])?) inhibitors?|"
+     r"AR antagonists?|anti-?androgens?|antiandrogens?|platinum|taxanes?|anthracyclines?|fluoropyrimidines?)\b",
+     T.SMALL_MOLECULE, ""),
+]
+
+
 def classify_by_name(name: str) -> RuleHit | None:
     text = name.strip()
     low = text.lower()
+    key = re.sub(r"[^0-9a-z]", "", low)
+
+    if key in REGIMENS:
+        return RuleHit(T.SMALL_MOLECULE, "", f"Chemotherapy regimen: {REGIMENS[key]}")
+    for pattern, modality, sub in CLASS_PHRASES:
+        if re.search(pattern, text, re.I):
+            return RuleHit(modality, sub, f'Names a drug class ("{text}"), not a specific drug')
 
     if RADIO.search(low):
         return RuleHit(T.RADIOPHARMACEUTICAL, "", "Name contains a medical radioisotope")

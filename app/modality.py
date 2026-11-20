@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 from app import chembl, rules, weblookup
 from app import taxonomy as T
 from app.curated import CuratedEntry, CuratedTable, default_table
-from app.names import DRUG, candidate_names, name_key, role_of, split_agents
+from app.names import DRUG, candidate_names, code_variants, name_key, role_of, split_agents
 from app.trial import Intervention
 
 BROAD = {T.MAB, T.FUSION_PROTEIN}
@@ -59,6 +59,11 @@ def _display_name(text: str) -> str:
     return text if re.search(r"\d", text) else text.lower()
 
 
+def _tidy_case(text: str) -> str:
+    """"Carboplatin" -> "carboplatin", but keep acronyms and codes ("FOLFOX", "AK117", "TROP2 ADC")."""
+    return " ".join(w.lower() if re.fullmatch(r"[A-Z][a-z\-]+", w) else w for w in text.split())
+
+
 def _from_curated(original: str, e: CuratedEntry, extra_names: list[str]) -> AgentCall:
     return AgentCall(
         original=original, name=e.agent, modality=e.modality, sub_modality=e.sub_modality,
@@ -92,7 +97,8 @@ def classify_agent(original: str, names: list[str], *, online: bool = True,
     # 2. ChEMBL
     hit = None
     if online:
-        for n in names[:4]:
+        lookup_names = _unique([*names[:4], *(v for n in names[:2] for v in code_variants(n))])
+        for n in lookup_names[:7]:
             if (hit := chembl.lookup(n)) and hit.modality:
                 break
             hit = None
@@ -102,7 +108,8 @@ def classify_agent(original: str, names: list[str], *, online: bool = True,
             if (e := table.find(n)):
                 return _from_curated(original, e, names)
 
-    call = AgentCall(original=original, name=_display_name(hit.pref_name) if hit and hit.pref_name else names[0],
+    call = AgentCall(original=original,
+                     name=_display_name(hit.pref_name) if hit and hit.pref_name else _tidy_case(names[0]),
                      synonyms=_unique([*names, *(hit.synonyms if hit else [])]))
     if hit:
         call.modality, call.source, call.url = hit.modality, "chembl", hit.url

@@ -55,3 +55,34 @@ def test_name_key():
 ])
 def test_roles(text, itype, role):
     assert role_of(text, itype) == role
+
+
+@pytest.mark.parametrize("raw, expected", [
+    ("AMG 386 with or without Trastuzumab", ["AMG 386", "Trastuzumab"]),
+    ("Carboplatin/Cisplatin + Pemetrexed", ["Carboplatin", "Cisplatin", "Pemetrexed"]),
+    ("irinotecan liposome", ["irinotecan"]),
+    ("Paclitaxel Polymeric Micelles", ["Paclitaxel"]),
+    ("nab-paclitaxel", ["paclitaxel"]),
+    ("Ivonescimab,TAS-102", ["Ivonescimab", "TAS-102"]),
+    ("AK112+AK104 group", ["AK112", "AK104"]),
+    ("Docetaxel +/- ramucirumab", ["Docetaxel", "ramucirumab"]),
+])
+def test_split_agents_messier_cases(raw, expected):
+    assert split_agents(raw) == expected
+
+
+def test_fullwidth_punctuation():
+    assert candidate_names(split_agents("Ivonescimab（AK112，a PD-1/VEGF bispecific antibody）")[0])[:2] == [
+        "Ivonescimab", "AK112"]
+
+
+@pytest.mark.parametrize("text", ["SCRT", "Questionnaire Administration", "Non-operative Management",
+                                  "second-line group", "HAIC"])
+def test_non_drug_phrases(text):
+    assert role_of(text, "DRUG") == NON_DRUG
+
+
+def test_code_variants():
+    from app.names import code_variants
+    assert code_variants("AMG 386") == ["AMG-386", "AMG386"]
+    assert code_variants("pembrolizumab") == []

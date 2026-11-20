@@ -93,6 +93,28 @@ deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
   ivonescimab), with the original wording in the trial detail view, so counts
   and modality add up per drug, not per spelling.
 
+## Stage 4 implementation notes
+- Code: app/names.py (cleanup, roles), app/curated.py, app/chembl.py, app/rules.py,
+  app/weblookup.py, app/modality.py (lookup order), app/drugsearch.py
+  (synonym-merged search), app/combos.py (arms + labels), app/cache.py.
+- Name cleanup also handles: full-width punctuation, "with or without", "+/-",
+  "A/B", formulations (liposome, albumin-bound, nab-, micelles), arm words
+  ("group", "regimen"), code-name spacing (AMG 386 / AMG-386).
+- Name rules also cover: chemo regimen abbreviations (FOLFOX, CapeOX, TP, S-1,
+  TAS-102 -> small molecule), drug-class phrases ("TROP2 ADC", "PD-1
+  inhibitors", "AR antagonist"), -cabtagene -> CAR-T, two-word "-mab <payload>"
+  -> ADC (but "-mab hyaluronidase/pegol" -> antibody).
+- Roles: procedures/radiotherapy/questionnaires typed as drugs -> non-drug.
+- Combination label: per arm, drugs sorted by modality (cell/gene therapy, ADC,
+  radiopharmaceutical, bispecific, mAb, ... small molecule), target prefixed when
+  known ("Nectin-4 ADC + PD-1/VEGF bispecific"), repeated labels shown once,
+  "(+ placebo)" appended. Trial label = experimental arms, joined with " | ".
+- Learned code names from trials' otherNames must contain a digit, be <=2 words,
+  appear in >=2 trials, and not be a different drug in ChEMBL.
+- Open question for the owner: radioligands (Pluvicto) are filed as
+  Radiopharmaceutical / sub-type radioligand.
+- Curated seed rows are reviewed = "no" until the owner checks them.
+
 ## UI
 - Search box plus filters: phase, status, site flag (China-only etc.),
   modality, and "contains modality X" (e.g., any trial with an ADC)

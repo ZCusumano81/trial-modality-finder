@@ -13,10 +13,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.ctgov import CTGovError, SearchQuery, get_study, search_studies  # noqa: E402
+from app.sites import SITE_FLAGS, summarize_trial_sites  # noqa: E402
 from app.trial import Trial, parse_study  # noqa: E402
 
 
-def print_trial(t: Trial) -> None:
+def print_trial(t: Trial, count_greater_china: bool = False) -> None:
     print(f"\n{t.nct_id}  {t.title}")
     print(f"  Link:        {t.url}")
     print(f"  Sponsor:     {t.sponsor or '-'}")
@@ -30,8 +31,9 @@ def print_trial(t: Trial) -> None:
     print(f"  Arms ({len(t.arm_groups)}):")
     for a in t.arm_groups:
         print(f"    - {a.label} ({a.type or 'type not given'}): {', '.join(a.intervention_names) or '-'}")
-    countries = sorted({s.country for s in t.sites if s.country})
-    print(f"  Sites:       {len(t.sites)} in {len(countries)} countries: {', '.join(countries) or '-'}")
+    s = summarize_trial_sites(t, count_greater_china)
+    print(f"  Sites:       {s.site_count} in {s.country_count} countries: {s.countries_label or '-'}")
+    print(f"  Site flag:   {s.flag}")
 
 
 def main() -> int:
@@ -44,13 +46,18 @@ def main() -> int:
     p.add_argument("--location", default="")
     p.add_argument("--status", action="append", default=[], help="e.g. RECRUITING (repeatable)")
     p.add_argument("--phase", action="append", default=[], help="e.g. PHASE3 (repeatable)")
-    p.add_argument("--max", type=int, default=10, help="max trials to show for a search")
+    p.add_argument("--max", type=int, default=10, help="max trials to fetch for a search")
+    p.add_argument("--greater-china", action="store_true",
+                   help="count Hong Kong, Macau and Taiwan as China")
+    p.add_argument("--flag", choices=SITE_FLAGS, help='only show trials with this site flag, e.g. "China-only"')
+    p.add_argument("--brief", action="store_true", help="one line per trial")
     args = p.parse_args()
+    gc = args.greater_china
 
     try:
         if args.nct_ids and not any([args.text, args.condition, args.drug, args.sponsor, args.location]):
             for nct_id in args.nct_ids:
-                print_trial(parse_study(get_study(nct_id)))
+                print_trial(parse_study(get_study(nct_id)), gc)
             return 0
         query = SearchQuery(
             text=args.text, condition=args.condition, intervention=args.drug,
@@ -59,9 +66,17 @@ def main() -> int:
             nct_ids=args.nct_ids,
         )
         studies, total = search_studies(query, max_results=args.max)
-        print(f"{total} trials match on ClinicalTrials.gov; showing {len(studies)}.")
-        for raw in studies:
-            print_trial(parse_study(raw))
+        trials = [parse_study(raw) for raw in studies]
+        if args.flag:
+            trials = [t for t in trials if summarize_trial_sites(t, gc).flag == args.flag]
+        note = f', {len(trials)} of them "{args.flag}"' if args.flag else ""
+        print(f"{total} trials match on ClinicalTrials.gov; fetched {len(studies)}{note}.")
+        for t in trials:
+            if args.brief:
+                s = summarize_trial_sites(t, gc)
+                print(f"{t.nct_id}  {s.flag:<24} {s.site_count:>4} sites  {t.title[:70]}")
+            else:
+                print_trial(t, gc)
         return 0
     except CTGovError as e:
         print(f"Error: {e}", file=sys.stderr)

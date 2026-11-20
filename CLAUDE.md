@@ -28,7 +28,10 @@ combination trials.
 - Sites: protocolSection.contactsLocationsModule.locations[].country
 - Site flags: "China-only" = every site country is "China". Whether Hong Kong,
   Macau and Taiwan count as China is a setting (default: they don't). Also label
-  "China + other countries" and "No sites listed".
+  "China + other countries" and "No sites listed". Added in Stage 3: "No China
+  sites" (sites listed, none in China) and "Country not stated" (sites listed
+  without countries). Sites missing a country are ignored for the flag.
+  Code: app/sites.py.
 
 ## Modality taxonomy
 Small molecule (sub-types: degrader/PROTAC, radioligand); Monoclonal antibody;

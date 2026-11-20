@@ -72,6 +72,27 @@ classified); Unknown.
   armGroups to show which agents are given together; tag placebo and standard of
   care; build a combination label sorted by modality, e.g. "ADC + PD-1 mAb".
 
+## Drug names and synonym-merged search (added before Stage 4)
+Why: ClinicalTrials.gov merges synonyms only for established drugs. Tested
+2026-11-20: osimertinib/AZD9291/Tagrisso all return 394 trials, but
+"ivonescimab" alone misses 54 of 193 trials listed only as "AK112", and the
+full name "trastuzumab deruxtecan" misses trials listed as T-DXd/DS-8201a.
+Short nicknames also over-match ("T-DXd" returns Dato-DXd, patritumab
+deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
+- Name cleanup: strip doses, units, routes and dose labels from intervention
+  names ("Pembrolizumab 200 mg", "Ivonescimab Dose 1", "Ivonescimab RP3D",
+  "AZD9291 80 mg/40 mg + placebo") before matching; keep the original text.
+- Synonym list per drug, from: modalities.csv synonyms (curated), the
+  otherNames trials list for an intervention, and ChEMBL synonyms (cached).
+- Drug search: search each name separately with query.intr, then merge and
+  de-duplicate by NCT ID (one OR query lost trials in testing).
+- Verify: keep a trial only if one of its interventions (name or otherNames,
+  after cleanup) matches one of the drug's names exactly, case-insensitive.
+  Drop trials that only mention the drug in text.
+- Display one canonical name per drug everywhere (e.g. AK112, SMT112 ->
+  ivonescimab), with the original wording in the trial detail view, so counts
+  and modality add up per drug, not per spelling.
+
 ## UI
 - Search box plus filters: phase, status, site flag (China-only etc.),
   modality, and "contains modality X" (e.g., any trial with an ADC)
@@ -103,8 +124,8 @@ classified); Unknown.
 1. Project setup, README, git
 2. ClinicalTrials.gov client and parsing, with tests on real NCT IDs
 3. Site-country summary and China-only flags
-4. Modality lookup (CSV, ChEMBL, name rules, Wikidata/Wikipedia), seeded CSV,
-   combination handling
+4. Drug-name cleanup and synonym-merged search; modality lookup (CSV,
+   ChEMBL, name rules, Wikidata/Wikipedia); seeded CSV; combination handling
 5. Streamlit UI and export
 6. find_unknowns.py and the 30-drug accuracy test
 7. Deploy: GitHub repo + Streamlit Community Cloud

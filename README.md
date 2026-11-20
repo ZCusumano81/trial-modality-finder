@@ -4,7 +4,7 @@ A free web app that searches ClinicalTrials.gov and shows, for each trial, the
 drug modality of every agent (small molecule, antibody, ADC, cell therapy, and
 so on), plus where the trial's sites are, including a "China-only" flag.
 
-The app uses only free data sources (ClinicalTrials.gov and ChEMBL) and needs
+The app uses only free data sources (ClinicalTrials.gov, ChEMBL, Wikidata and Wikipedia) and needs
 no API keys. Drug classifications that can't be looked up automatically are
 curated by hand, with AI help, and stored in `data/modalities.csv`.
 
@@ -37,5 +37,6 @@ uv run streamlit run streamlit_app.py    # open the app in your browser
 
 - [ClinicalTrials.gov](https://clinicaltrials.gov) API v2
 - [ChEMBL](https://www.ebi.ac.uk/chembl/) (EMBL-EBI), CC BY-SA 3.0
+- [Wikidata](https://www.wikidata.org) (CC0) and [Wikipedia](https://www.wikipedia.org) (CC BY-SA)
 
 Modality calls are curated with AI help and may contain errors.

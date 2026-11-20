@@ -50,7 +50,15 @@ classified); Unknown.
    emtansine/mafodotin/tesirine -> ADC; -cel -> cell therapy; -vec -> gene
    therapy; -rsen -> ASO; -siran -> siRNA; -cept -> fusion protein; -tide ->
    peptide; -ase -> enzyme; -tinib/-ciclib/-parib/-lisib -> small molecule.
-4. Otherwise show "Pending review."
+4. Free web lookup (no API key): Wikidata (instance of / subclass of, e.g.
+   "monoclonal antibody", "antibody-drug conjugate") and the Wikipedia page
+   summary (keyword match such as "is a bispecific antibody", "is a CAR-T").
+   Search by name and each synonym. Used when steps 1-3 find nothing, or only
+   a broad answer that the web result makes more specific. Save confidence
+   "low", source "wikidata" or "wikipedia", and the matched sentence or
+   property as evidence. Cache responses on disk. Never use paid or keyed
+   search engines (Google, Bing) and never scrape search-results pages.
+5. Otherwise show "Pending review."
 - Precedence tweak (agreed in planning): when a name-stem rule gives a more
   specific answer than ChEMBL's broad molecule_type (e.g. "deruxtecan" -> ADC
   vs ChEMBL "Antibody"), the name rule wins. The curated CSV still always wins.
@@ -67,7 +75,7 @@ classified); Unknown.
 - Results table plus CSV and Excel export
 - Trial detail view showing each agent's modality, source and evidence
 - "Pending review" badge and a "Suggest a correction" mailto link
-- Footer: data sources (ClinicalTrials.gov, ChEMBL attribution) and a note
+- Footer: data sources (ClinicalTrials.gov, ChEMBL, Wikidata/Wikipedia attribution) and a note
   that modality calls are curated with AI help and may contain errors
 
 ## Curation workflow (run by me in Claude Code, never by the app)
@@ -92,7 +100,8 @@ classified); Unknown.
 1. Project setup, README, git
 2. ClinicalTrials.gov client and parsing, with tests on real NCT IDs
 3. Site-country summary and China-only flags
-4. Modality lookup (CSV, ChEMBL, name rules), seeded CSV, combination handling
+4. Modality lookup (CSV, ChEMBL, name rules, Wikidata/Wikipedia), seeded CSV,
+   combination handling
 5. Streamlit UI and export
 6. find_unknowns.py and the 30-drug accuracy test
 7. Deploy: GitHub repo + Streamlit Community Cloud

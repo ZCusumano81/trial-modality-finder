@@ -17,7 +17,8 @@ Then, in this folder:
 
 ```bash
 uv sync                                  # install everything (first time only)
-uv run pytest                            # run the tests
+uv run pytest                            # run the tests (add -m "not live" if offline)
+uv run python scripts/show_trial.py NCT03529110   # print one trial in the terminal
 uv run streamlit run streamlit_app.py    # open the app in your browser
 ```
 

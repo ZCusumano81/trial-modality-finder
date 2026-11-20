@@ -1,0 +1,19 @@
+[project]
+name = "trial-modality-finder"
+version = "0.1.0"
+description = "Free web app that searches ClinicalTrials.gov and shows the drug modality of every agent in each trial."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "streamlit",
+    "httpx",
+    "pandas",
+    "openpyxl",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

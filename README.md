@@ -1,5 +1,7 @@
 # Clinical Trial Modality Finder
 
+**Live app: https://trial-modality-finder.streamlit.app**
+
 A free web app that searches ClinicalTrials.gov and shows, for each trial, the
 drug modality of every agent (small molecule, antibody, ADC, cell therapy, and
 so on), plus where the trial's sites are, including a "China-only" flag.

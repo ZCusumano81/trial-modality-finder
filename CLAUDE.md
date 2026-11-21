@@ -182,7 +182,10 @@ deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
    ChEMBL, name rules, Wikidata/Wikipedia); seeded CSV; combination handling
 5. Streamlit UI and export
 6. find_unknowns.py and the 30-drug accuracy test
-7. Deploy: GitHub repo + Streamlit Community Cloud
+7. Deploy: GitHub repo + Streamlit Community Cloud (done 2026-11-20:
+   https://trial-modality-finder.streamlit.app, public repo
+   https://github.com/ZCusumano81/trial-modality-finder, branch main; pushing to
+   main redeploys automatically)
 
 ## Commands
 - Python and libraries are managed by `uv` (Python 3.11 in .python-version).

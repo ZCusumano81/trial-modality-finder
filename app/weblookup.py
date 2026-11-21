@@ -35,7 +35,7 @@ TIMEOUT = 20.0
 # Phrases in a Wikipedia first sentence, most specific first.
 SENTENCE_RULES: list[tuple[str, str, str]] = [
     (r"antibody[- ](?:oligonucleotide|sirna) conjugate", T.AOC, ""),
-    (r"antibody[- ]drug conjugate|\bADC\b", T.ADC, ""),
+    (r"antibody[- ]drug conjugate|\bADC\b|\bimmunoconjugate\b", T.ADC, ""),
     (r"radio(?:ligand|pharmaceutical|conjugate)|radiolabel(?:l)?ed", T.RADIOPHARMACEUTICAL, ""),
     (r"\b(?:bi|tri|multi)[- ]?specific\b|T[- ]cell engager|\bBiTE\b", T.BISPECIFIC, ""),
     (r"chimeric antigen receptor|\bCAR[- ]?T\b", T.CELL_THERAPY, "CAR-T"),

@@ -95,7 +95,8 @@ def already_proposed() -> set[str]:
     if not PROPOSED.exists():
         return set()
     with open(PROPOSED, newline="", encoding="utf-8") as f:
-        return {name_key(r.get("agent") or "") for r in csv.DictReader(f)}
+        return {name_key(n) for r in csv.DictReader(f)
+                for n in [r.get("agent") or "", *split_synonyms(r.get("synonyms") or "")] if name_key(n)}
 
 
 def write(found: dict[str, Unknown], path: Path = OUT) -> int:

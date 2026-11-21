@@ -1,1 +1,133 @@
 agent,synonyms,modality,sub_modality,target,confidence,evidence,source,reviewed,date
+ligufalimab,AK117,Monoclonal antibody,,CD47,high,Humanized IgG4 anti-CD47 mAb (JITC 2022; NCI drug dictionary),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+ebronucimab,AK102,Monoclonal antibody,,PCSK9,high,Fully human anti-PCSK9 mAb; approved in China Sep 2024,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+manfidokimab,AK120,Monoclonal antibody,,IL-4Rα,high,Humanized IgG4 anti-IL-4Rα mAb (Dermatol Ther 2023; Antibody Society),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK139,,Bispecific/multispecific antibody,,IL-4Rα/ST2,high,"IL-4Rα x ST2 bispecific antibody (Akeso IND press release, Feb 2025)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+risvutatug rezetecan,HS-20093; GSK5764227; GSK'227,Antibody-drug conjugate (ADC),,B7-H3,high,Anti-B7-H3 IgG1 + topoisomerase I inhibitor ADC (NCI dictionary; Hansoh/GSK),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK138D1,,Antibody-drug conjugate (ADC),,HER3,high,HER3 ADC: patritumab antibody + topo I inhibitor (Akeso; ADCdb),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK129,,Bispecific/multispecific antibody,,PD-1/LAG-3,high,Anti-PD-1/LAG-3 bispecific antibody (NCI drug dictionary),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+mocertatug rezetecan,HS-20089; GSK5733584; GSK 5733584,Antibody-drug conjugate (ADC),,B7-H4,high,Anti-B7-H4 IgG1 + topo I inhibitor ADC (NCI dictionary; GSK licence 2023),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+pumitamig,BNT327; PM8002; BMS986545,Bispecific/multispecific antibody,,PD-L1/VEGF-A,high,PD-L1 x VEGF-A bispecific antibody (NCI dictionary; BioNTech),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HS-20110,,Antibody-drug conjugate (ADC),,CDH17,medium,CDH17-targeted ADC with topoisomerase inhibitor payload (Hansoh; Roche licence Oct 2025),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HS-20122,,Antibody-drug conjugate (ADC),,EGFR/c-Met,medium,Anti-EGFR/c-Met bispecific ADC (ADCdb; Phase 1 NCT06927570),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HS-20117,PM1080,Bispecific/multispecific antibody,,EGFR/c-Met,medium,Anti-EGFR/cMet bispecific antibody licensed by Hansoh from Biotheus (Fierce Biotech),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+OVV-01,,Oncolytic virus,,,medium,Oncolytic virus given intratumorally (NCI: oncolytic vaccinia virus; other sources say VSV - vector type unresolved),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+SYS6010,CPO301,Antibody-drug conjugate (ADC),,EGFR,high,"Anti-EGFR ADC with topo I inhibitor JS-1, DAR 8 (ADCdb; CSPC)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+YL201,,Antibody-drug conjugate (ADC),,B7-H3,high,Anti-B7-H3 ADC with topo I inhibitor (NCI dictionary; MediLink),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+3H-10000,,Antibody-drug conjugate (ADC),,FGFR2b,low,Listed as FGFR2b-targeted ADC in one database (Patsnap Synapse) only,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+ACE723,,Antibody-drug conjugate (ADC),dual-payload,GPC3,high,GPC3-targeted dual-payload ADC (Acepodia; FDA IND clearance Sep 2026),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+ebdarokimab,AK101,Monoclonal antibody,,IL-12/IL-23 p40,high,Anti-IL-12/23 p40 IgG1 mAb; approved in China Apr 2025,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK114,,Monoclonal antibody,,IL-1β,low,Described as anti-IL-1β mAb by JAX CKB only; target not confirmed by Akeso,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK132,,Bispecific/multispecific antibody,,CLDN18.2/CD47,high,"Claudin18.2 x CD47 bispecific antibody (Akeso, SITC)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK135,,Monoclonal antibody,,IL-1RAP,medium,"Anti-IL-1RAP antagonist mAb for CIPN (Akeso, SITC 2025)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK137,,Bispecific/multispecific antibody,,CD73/LAG-3,high,CD73 x LAG-3 bispecific antibody (NCT06691360 title),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK150,,Bispecific/multispecific antibody,trispecific,ILT2/ILT4/CSF1R,medium,"Trispecific antibody targeting ILT2, ILT4 and CSF1R (Akeso press release Mar 2026)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK152,,Bispecific/multispecific antibody,,Aβ/BBB receptor,medium,"Bispecific antibody: amyloid-β x blood-brain-barrier shuttle receptor (Akeso, NMPA IND Nov 2025)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK157D1,,Antibody-drug conjugate (ADC),,B7-H3,medium,"B7-H3 ADC, humanized IgG1 + DXd (Akeso, Aug 2026)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+AK158D1,,Antibody-drug conjugate (ADC),,EGFR/TROP2,medium,"EGFR x TROP2 bispecific ADC (Akeso, Sep 2026)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+DB-1311,BNT324; DB-1311/BNT324,Antibody-drug conjugate (ADC),,B7-H3,high,B7-H3 ADC with topo I inhibitor (NCI dictionary; DualityBio/BioNTech),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+DB-1305,BNT325; DB-1305/BNT325,Antibody-drug conjugate (ADC),,TROP2,high,TROP2 ADC (DualityBio/BioNTech),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+YL202,BNT326; BNT326/YL202,Antibody-drug conjugate (ADC),,HER3,high,Anti-HER3 IgG1 + topo I inhibitor YL0010014 ADC (BioNTech/MediLink),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+CRB-701,SYS6002; SYS-6002,Antibody-drug conjugate (ADC),,Nectin-4,high,Anti-nectin-4 MMAE ADC (NCI dictionary; Corbus/CSPC),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+tovecimig,CTX-009; CTX009; ABL001,Bispecific/multispecific antibody,,DLL4/VEGF-A,high,DLL4 x VEGF-A bispecific antibody (NCI dictionary 'tovecimig'; Compass),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+zocilurtatug pelitecan,ZL-1310; zoci,Antibody-drug conjugate (ADC),,DLL3,high,"Anti-DLL3 ADC with camptothecin payload, DAR 8 (NCI dictionary; Zai Lab)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+ramantamig,JNJ-79635322; JNJ-5322,Bispecific/multispecific antibody,trispecific,BCMA/GPRC5D/CD3,high,BCMA x GPRC5D x CD3 trispecific T-cell engager (NCI dictionary; J&J),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+GQ1001,,Antibody-drug conjugate (ADC),,HER2,high,Anti-HER2 DM1 ADC (NCI dictionary; GeneQuantum),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+CS5007,,Antibody-drug conjugate (ADC),,EGFR/HER3,medium,"EGFR x HER3 bispecific ADC with exatecan (CStone, 2026)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+FG-M131,,Antibody-drug conjugate (ADC),,TRBC1,medium,TRBC1-targeted ADC for PTCL (NCT07758491; FutureGen),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+FZ-AD005,,Antibody-drug conjugate (ADC),,DLL3,high,Anti-DLL3 ADC with DXd payload (NCI dictionary; Fudan-Zhangjiang),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+silevimig,GR1801,Bispecific/multispecific antibody,,rabies virus glycoprotein,high,Bispecific anti-rabies antibody (Genrix; Phase 3 NCT05846568),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HRS-5041,,Small molecule,degrader/PROTAC,AR,high,Oral androgen-receptor PROTAC degrader (Hengrui),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HS-20124,,Antibody-drug conjugate (ADC),,CDH6,medium,CDH6-targeted DAR-8 ADC (NCT06763159); one source says EGFR/c-Met,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+HLX37,,Bispecific/multispecific antibody,,PD-L1/VEGF,medium,Humanized anti-PD-L1 x VEGF bispecific antibody (Henlius),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+JMT108,JMT-108,Fusion protein / other recombinant protein,,PD-1/IL-15,low,Bifunctional anti-PD-1/IL-15 fusion protein (CSPC); NCI calls it a bispecific antibody,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+JSKN022,,Antibody-drug conjugate (ADC),,integrin β6/PD-L1,medium,"Integrin αvβ6 x PD-L1 bispecific ADC (Alphamab, 2025)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+LY4052031,,Antibody-drug conjugate (ADC),,Nectin-4,high,Anti-nectin-4 ADC with camptothecin payload (NCI dictionary; Lilly),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+M701,,Bispecific/multispecific antibody,,EpCAM/CD3,high,"Anti-EpCAM x anti-CD3 bispecific antibody, intraperitoneal (PMC12661848)",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+MRG006A,,Antibody-drug conjugate (ADC),,GPC3,high,GPC3-targeted ADC with topo I inhibitor (ADCdb; Miracogen),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+PF-08046050,SGN-CEACAM5C; SAR445953,Antibody-drug conjugate (ADC),,CEACAM5,high,Anti-CEACAM5 ADC with TOP1 inhibitor payload (Pfizer/Seagen),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+SKB518,,Antibody-drug conjugate (ADC),,PTK7,low,"Kelun ADC; PTK7 target inferred from database/trial criteria, not stated by Kelun",Claude Code curation 2026-11-21 (web search),no,2026-11-21
+SMP-656,,Antibody-drug conjugate (ADC),,HER2,high,HER2-targeted ADC with eribulin payload (ESMO Asia 2025),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+SYS6043,SYS-6043,Antibody-drug conjugate (ADC),,B7-H3,medium,B7-H3-directed ADC (CSPC; China breakthrough designation),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+TAK-928,IBI363,Fusion protein / other recombinant protein,antibody-cytokine fusion,PD-1/IL-2,high,PD-1/alpha-biased IL-2 bispecific fusion protein (Takeda/Innovent),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+TRS005,,Antibody-drug conjugate (ADC),,CD20,high,Anti-CD20 MMAE ADC (NCI dictionary; Teruisi),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+VBC103,AVZO-103; AVZO 103,Antibody-drug conjugate (ADC),,Nectin-4/TROP2,medium,Nectin-4 x TROP2 bispecific ADC (NCT07299747 title),Claude Code curation 2026-11-21 (web search),no,2026-11-21
+DAN-222,DAN222; Dan222,Small molecule,polymer-drug conjugate,topoisomerase I,low,Polymeric nanoparticle-conjugated camptothecin (NCI dictionary). Not an ADC; taxonomy has no polymer-conjugate class,Claude Code curation 2026-11-21 (web search),no,2026-11-21
+trebananib,AMG 386; AMG-386,Fusion protein / other recombinant protein,peptibody (peptide-Fc fusion),Angiopoietin-1/2,high,Peptide-Fc fusion 'peptibody' against angiopoietins (Amgen),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+TQB2102,,Antibody-drug conjugate (ADC),,HER2,medium,Trial description: 'a HER2 bispecific antibody-drug conjugate',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+trastuzumab rezetecan,SHR-A1811; trastuzumab-rezetecan,Antibody-drug conjugate (ADC),,HER2,high,Trial description: 'an anti-HER2 antibody-drug conjugate'; INN trastuzumab rezetecan,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AK146D1,,Antibody-drug conjugate (ADC),,TROP2/Nectin-4,medium,Trial description: 'anti-Trop2/Nectin4 bispecific antibody-drug conjugate',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+HLX43,,Antibody-drug conjugate (ADC),,PD-L1,medium,Trial description: anti-PD-L1 mAb conjugated with a topo I inhibitor,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+9MW2821,,Antibody-drug conjugate (ADC),,Nectin-4,medium,Trial description: 'a Nectin-4 antibody-drug conjugate',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AMT-116,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'an antibody drug conjugate'; target not stated,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+HB1801,,Small molecule,,,medium,Trial description: albumin-bound docetaxel,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+IBI3005,,Antibody-drug conjugate (ADC),,,medium,Trial description: bispecific mAb-camptothecin derivative conjugate,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+IBI354,,Antibody-drug conjugate (ADC),,HER2,medium,Trial description: anti-HER2 mAb-camptothecin derivative conjugate,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+JS207,,Bispecific/multispecific antibody,,PD-1/VEGF,medium,Trial description: 'an anti-PD-1/VEGF bispecific antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+JSKN016,,Antibody-drug conjugate (ADC),,HER3/TROP2,medium,Trial description: bispecific ADC targeting HER3 and TROP2,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+KN026,anbenitamab,Bispecific/multispecific antibody,,HER2 (biparatopic),medium,Trial description: 'antibody targeting HER2'; KN026 is Alphamab's biparatopic HER2 bispecific,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SHR-A1921,,Antibody-drug conjugate (ADC),,TROP2,medium,Trial description: 'a TROP2-directed ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SYS6023,,Antibody-drug conjugate (ADC),,HER3,medium,Trial description: 'ADC targeting HER3',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB2868,,Bispecific/multispecific antibody,,PD-1/TGF-β,medium,Trial description: 'anti-PD-1/TGF-β bispecific antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AK131,,Bispecific/multispecific antibody,,PD-1/CD73,medium,Trial description: 'anti-PD-1 and CD73 bispecific antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AK154,,Vaccine,mRNA,personalized neoantigens,medium,Trial description: 'personalized mRNA vaccine',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AZD0901,CMG901,Antibody-drug conjugate (ADC),,CLDN18.2,medium,Trial description: 'Antibody-drug conjugate'; CMG901 is a Claudin 18.2 ADC,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AZD4512,,Antibody-drug conjugate (ADC),,CD22,medium,Trial description: 'antibody-drug conjugate targeting CD22',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AZD5335,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody drug conjugate'; target not stated,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+BAT8008,,Antibody-drug conjugate (ADC),,TROP2,medium,Other name: recombinant humanized anti-Trop2 mAb conjugate,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+BAY 3547926,,Radiopharmaceutical,actinium-225 antibody conjugate,,medium,Trial description: 'antibody conjugate with actinium-225 label',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+BAY 3547922,,Monoclonal antibody,,,low,Trial description: unlabelled antibody conjugate given as a pre-injection before the Ac-225 drug,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+BAY 3713391,BAY 3713389,Radiopharmaceutical,imaging agent,,low,Trial description: 'radioactive imaging agent - optional preinjection',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+GenSci139,,Antibody-drug conjugate (ADC),,EGFR/HER2,medium,Trial description: 'bispecific antibody drug conjugate targeting EGFR and HER2',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+GB268,,Bispecific/multispecific antibody,trispecific,PD-1/CTLA-4/VEGF,medium,"Trial description: 'tri-specific antibody targeting PD-1, CTLA-4, and VEGF'",Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+HDM2024,,Antibody-drug conjugate (ADC),,EGFR/HER3,medium,Trial description: 'ADC drug targeting EGFR and HER3',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+HRS-2329,,Small molecule,,pan-RAS,medium,Trial description: 'oral pan-RAS inhibitor',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+HRS-6209,,Small molecule,,CDK4,medium,Trial description: 'oral CDK4 inhibitor',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+IBI3028,,Antibody-drug conjugate (ADC),dual-payload,EGFR/c-Met,medium,Trial description: anti-EGFR and c-Met antibody dual-payload conjugate,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+fulzerasib,IBI351,Small molecule,,KRAS G12C,high,KRAS G12C inhibitor (INN fulzerasib; trial lists IBI351),Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+JS007,,Monoclonal antibody,,CTLA-4,medium,Trial description: 'CTLA-4 monoclonal antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+JSKN003,,Antibody-drug conjugate (ADC),,HER2 (biparatopic),medium,Trial description: 'an anti-HER2 ADC' (Alphamab biparatopic HER2 ADC),Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+MHB088C,QLC5508,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody drug-conjugated molecule (ADC)'; target not stated,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+OBI-902,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody-drug conjugate study drug',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+PF-08046054,SGN-PDL1V,Antibody-drug conjugate (ADC),,PD-L1,medium,Trial description: 'Antibody Drug Conjugate'; SGN-PDL1V = PD-L1 vedotin,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+PLB-002,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody drug conjugate (ADC)',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+QLS5132,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody drug conjugate (ADC)',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+QLS5133,,Antibody-drug conjugate (ADC),,,medium,Trial description: 'antibody drug conjugate (ADC)',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+QLS5212,,Antibody-drug conjugate (ADC),,trophoblast glycoprotein (5T4),medium,Trial description: 'anti-trophoblast glycoprotein ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SHR-4602,,Antibody-drug conjugate (ADC),,HER2,medium,Trial description: 'an anti-HER2 ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SHR-A2009,,Antibody-drug conjugate (ADC),,HER3,medium,Trial description: 'A HER3-directed ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SHR-A2102,,Antibody-drug conjugate (ADC),,Nectin-4,medium,Trial description: 'A Nectin4-directed ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SKB315,,Antibody-drug conjugate (ADC),,CLDN18.2,medium,Trial description: 'ADC drug targeting Claudin18.2',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+STI-6129,,Antibody-drug conjugate (ADC),,CD38,medium,Trial description: anti-CD38 ADC with duostatin payload,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SYS6041,farletuzumab exatecan,Antibody-drug conjugate (ADC),,FRα,medium,Trial description: 'Farletuzumab-exatecan ADC targeting FRα',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TJ101,,Antibody-drug conjugate (ADC),,EGFR/B7-H3,medium,Trial description: EGFR/B7H3-directed antibody conjugate with topo I inhibitor,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TJ102,,Antibody-drug conjugate (ADC),dual-payload,CDH6/FRα,medium,Trial description: CDH6/FRα-directed antibody conjugate with dual payloads,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB2101,,Antibody-drug conjugate (ADC),,ROR1,medium,Trial description: 'ROR1 ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB2825,,Bispecific/multispecific antibody,,CD3/CD20,medium,Trial description: 'CD3 x CD20 bispecific antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB2930,,Bispecific/multispecific antibody,,HER2,medium,Trial description: 'HER2 bispecific antibody drug',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB2934,,Bispecific/multispecific antibody,,BCMA/CD3,medium,Trial description: 'bispecific antibody targeting BCMA and CD3',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+TQB6411,,Antibody-drug conjugate (ADC),,EGFR/c-Met,medium,Trial description: 'ADC targeting EGFR/c-Met',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+VBC117,,Antibody-drug conjugate (ADC),,EGFR/CDH17,medium,Trial description: 'EGFR x CDH17 bispecific ADC',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+SC-102,102,Peptide,peptide-drug conjugate,EphA2,medium,Trial description: EphA2-targeting peptide + tubulin inhibitor conjugate (PDC),Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AcNK-Sup003,AcNK-Sup003 cell,Cell therapy,NK (antibody-armed),,medium,Trial description: NK cells covalently conjugated with intact antibodies,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+LNL,tumor-draining lymph node-derived lymphocytes; tumor-draining lymph node-derived lymphocyte,Cell therapy,lymphocytes (TIL-like),,medium,Trial description: infusion of 1-18 x 10^9 lymph-node-derived lymphocytes,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+VV1,Voyager-V1; VOYAGER V1; VSV-IFNβ-NIS,Oncolytic virus,VSV,,high,"Engineered vesicular stomatitis virus expressing IFNβ and NIS, intratumoral",Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+EVM14,,Vaccine,,,medium,Trial description: 'Cancer Vaccine' given intramuscularly,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+BP102,,Monoclonal antibody,,VEGF (bevacizumab biosimilar),medium,Trial description: humanized IgG1 mAb biosimilar to bevacizumab,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+izalontamab brengitecan,iza-bren; BL-B01D1,Antibody-drug conjugate (ADC),,EGFR/HER3,high,EGFR x HER3 bispecific ADC (INN; SystImmune/BMS),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+lisaftoclax,APG-2575,Small molecule,,BCL-2,high,Oral BCL-2 inhibitor (INN; Ascentage),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+zoldonrasib,RMC-9805,Small molecule,,KRAS G12D,high,Oral RAS(ON) G12D-selective inhibitor (INN; Revolution Medicines),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+disitamab vedotin,RC48; RC48-ADC; Aidixi,Antibody-drug conjugate (ADC),,HER2,high,"Anti-HER2 MMAE ADC, approved in China (trial description agrees)",Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+mirvetuximab soravtansine,MIRV; IMGN853; Elahere,Antibody-drug conjugate (ADC),,FRα,high,"Anti-FRα DM4 ADC, FDA approved (Elahere label)",Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+trastuzumab duocarmazine,SYD985; SYD985 trastuzumab duocarmazine,Antibody-drug conjugate (ADC),,HER2,high,Anti-HER2 duocarmycin ADC (INN; Byondis),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+pembrolizumab,QL2107,Monoclonal antibody,,PD-1,high,QL2107 is a pembrolizumab biosimilar (ChEMBL lists it as a pembrolizumab synonym),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+mitoxantrone liposome,LEM; liposome-entrapped mitoxantrone; liposomal mitoxantrone,Small molecule,liposomal formulation,topoisomerase II,high,Liposomal mitoxantrone (trial description),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+hyaluronidase human,rHuPH20; hyaluronidase (human recombinant),Enzyme,,hyaluronan,high,Recombinant human hyaluronidase used for subcutaneous co-formulation (Rituxan Hycela label),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+efmoroctocog alfa,Eloctate; rFVIIIFc; eloctate injectable product; eloctate ITI,Fusion protein / other recombinant protein,,factor VIII,high,Recombinant factor VIII-Fc fusion protein (Eloctate label),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+granulocyte-macrophage colony-stimulating factor,GM-CSF; sargramostim; Granulocyte-Macrophage Colony-Stimulating Factor,Fusion protein / other recombinant protein,recombinant cytokine,GM-CSF receptor,high,Recombinant cytokine (taxonomy: other recombinant protein),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+MenQuadfi,MenQuadfi tetanus toxoid conjugate Vaccine; MenACYW conjugate vaccine,Vaccine,conjugate vaccine,Neisseria meningitidis,high,Meningococcal conjugate vaccine (label),Claude Code curation 2026-11-21 (published INN / approved label),no,2026-11-21
+Menhycia,Menhycia®,Vaccine,conjugate vaccine,Neisseria meningitidis,medium,Trial description: MenAC and MenYW135 conjugate vaccine,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+rabies vaccine (Vero cell),rabies vaccine,Vaccine,inactivated,rabies virus,high,Trial description: licensed freeze-dried Vero-cell rabies vaccine,Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+Sinovac PCV13,sinovac PCV13 lot,Vaccine,conjugate vaccine,Streptococcus pneumoniae,high,13-valent pneumococcal conjugate vaccine (trial description),Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+AK119,,Monoclonal antibody,,CD73,medium,Trial description: 'AK119 is an anti-CD73 monoclonal antibody',Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21
+68Ga-NOTA-H006,,Radiopharmaceutical,PET imaging agent,,medium,"Trial description: 68Ga-labelled PET imaging agent (diagnostic, not a treatment)",Claude Code curation 2026-11-21 (sponsor's trial description),no,2026-11-21

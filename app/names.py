@@ -20,7 +20,7 @@ NON_DRUG = "non-drug"
 
 NON_DRUG_TYPES = {"PROCEDURE", "RADIATION", "DEVICE", "BEHAVIORAL", "DIAGNOSTIC_TEST", "DIETARY_SUPPLEMENT"}
 
-PLACEBO_PATTERN = re.compile(r"\b(placebo|matching placebo|saline|sham|vehicle)\b", re.I)
+PLACEBO_PATTERN = re.compile(r"\b(placebos?|matching placebo|saline|sham|vehicle)\b", re.I)
 SOC_PATTERN = re.compile(
     r"\b(standard[- ]of[- ]care|SOC|best supportive care|BSC|supportive care|physician'?s choice|"
     r"investigator'?s choice|treatment of physician'?s choice|TPC|usual care|observation|"
@@ -32,11 +32,20 @@ NON_DRUG_PATTERN = re.compile(
     r"\b(?:radiotherapy|radiation|irradiation|SBRT|SABR|SCRT|IMRT|SRS|SRT|proton therapy|brachytherapy|"
     r"surgery|surgical|resection|operation|non[- ]operative|HAIC|TACE|RFA|ablation|transplant(?:ation)?|"
     r"(?:allo|auto)?[- ]?HS?CT|stem cell transplant\w*|"
-    r"questionnaire|survey|interview|assessment|management|education|counsel+ing|exercise|"
+    r"questionnaire|survey|interview|assessment|management|education|counsel+ing|exercise|physiotherapy|"
+    r"manual therapy|"
     r"biopsy|blood (?:draw|sample)|sample collection|imaging|PET|MRI|CT scan|ultrasound|ctDNA|"
     r"data collection|follow[- ]up|observation)\b|\b(?:group|cohort)\s*$",
     re.I,
 )
+# Phrases that describe a step of a protocol, not a specific drug.
+GENERIC_TREATMENT = re.compile(
+    r"^(?:randomi[sz]ation|sample|samples|pharmacological study|non-intervention research|control arm|"
+    r"rescue medications?|systemic therapy|other anti-?cancer therapy|targeted drugs?|chemotherapeutic drugs?|"
+    r"chemotherapy drugs?|induction therapy|maintenance(?: therapy)?|neoadjuvant (?:therapy|chemotherapy)|"
+    r"pre-?treatment|post-?CR (?:consolidation|treatment)|consolidation|intrathecal|intolerable toxicity|"
+    r"standard|cervical spine|a dose of.*|\d+%|positive control|comparator)$", re.I)
+
 # Generic regimen words with no specific drug ("platinum-based chemotherapy").
 GENERIC_REGIMEN = re.compile(
     r"^(?:(?:platinum|platinum[- ]based|investigator'?s choice|standard|systemic|adjuvant|"
@@ -117,6 +126,61 @@ def _tidy(text: str) -> str:
     return text
 
 
+# Arm labels written before a drug: "A1: SHR-A1811", "investigational drug: HLX37".
+ARM_PREFIX = re.compile(
+    r"^\s*(?:[A-Z]\d{1,2}|arm\s*\w+|cohort\s*\w+|group\s*\w+|investigational (?:drug|product)|"
+    r"experimental(?: drug)?|active comparator|control)\s*:\s*", re.I)
+EMBEDDED_TYPE = re.compile(r"\s+(?:Drug|Biological|Other)\s*:\s*")
+# Words trailing a drug name that describe how/when it's given.
+TRAILING_NOISE = re.compile(
+    r"\s+(?:monotherapy|combined|combination|(?:low|medium|high)[- ]dose|until disease progression.*|"
+    r"via\b.*|for \d.*cycles?.*|should be.*|is injected.*|IN\s*≥.*|maintenance after.*|- \d+ cycles?)$", re.I)
+
+# Regimens written as abbreviations, expanded into their drugs so each is classified.
+REGIMEN_COMPONENTS = {
+    name_key(k): v for k, v in {
+        "FOLFOX": ["fluorouracil", "leucovorin", "oxaliplatin"],
+        "mFOLFOX6": ["fluorouracil", "leucovorin", "oxaliplatin"],
+        "FOLFIRI": ["fluorouracil", "leucovorin", "irinotecan"],
+        "FOLFIRINOX": ["fluorouracil", "leucovorin", "irinotecan", "oxaliplatin"],
+        "mFOLFIRINOX": ["fluorouracil", "leucovorin", "irinotecan", "oxaliplatin"],
+        "mFOLFORINOX": ["fluorouracil", "leucovorin", "irinotecan", "oxaliplatin"],
+        "FOLFOXIRI": ["fluorouracil", "leucovorin", "oxaliplatin", "irinotecan"],
+        "mFOLFOXIRI": ["fluorouracil", "leucovorin", "oxaliplatin", "irinotecan"],
+        "CAPOX": ["capecitabine", "oxaliplatin"], "CapeOX": ["capecitabine", "oxaliplatin"],
+        "XELOX": ["capecitabine", "oxaliplatin"], "XELIRI": ["capecitabine", "irinotecan"],
+        "GEMOX": ["gemcitabine", "oxaliplatin"], "GnP": ["gemcitabine", "paclitaxel"],
+        "SOX": ["tegafur-gimeracil-oteracil", "oxaliplatin"],
+        "SOX chemotherapy": ["tegafur-gimeracil-oteracil", "oxaliplatin"],
+        "FLOT": ["fluorouracil", "leucovorin", "oxaliplatin", "docetaxel"],
+        "EC": ["epirubicin", "cyclophosphamide"], "AC": ["doxorubicin", "cyclophosphamide"],
+        "EP": ["etoposide", "cisplatin"],
+        "CHOP": ["cyclophosphamide", "doxorubicin", "vincristine", "prednisone"],
+        "R-CHOP": ["rituximab", "cyclophosphamide", "doxorubicin", "vincristine", "prednisone"],
+        "R-mini-CHOP": ["rituximab", "cyclophosphamide", "doxorubicin", "vincristine", "prednisone"],
+        "R-CVP": ["rituximab", "cyclophosphamide", "vincristine", "prednisone"],
+        "BR": ["bendamustine", "rituximab"],
+    }.items()
+}
+# Common misspellings in trial records -> correct name (tried as an extra candidate).
+SPELLING_FIXES = {
+    name_key(k): v for k, v in {
+        "capcitabine": "capecitabine", "vincrisitne": "vincristine", "tioguanin": "tioguanine",
+        "prenisolone": "prednisolone", "5- fluorouracil": "fluorouracil", "5-FU": "fluorouracil",
+        "l-leucovorin": "levoleucovorin", "6-Mercaptopurine": "mercaptopurine",
+        "tegafur-gimeracil-oteracil potassium": "tegafur", "tegafur-gimeracil-oteracil": "tegafur",
+        "liposome-entrapped mitoxantrone": "mitoxantrone", "carbonilumab": "cadonilimab",
+    }.items()
+}
+
+
+def _balance_parens(text: str) -> str:
+    """Drop a stray ")" or "(" left over from a split ("prednisone)")."""
+    if text.count("(") != text.count(")"):
+        text = text.replace("(", " ").replace(")", " ")
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def split_agents(raw_name: str) -> list[str]:
     """Split an intervention name that names several agents, and tidy each part.
 
@@ -131,13 +195,16 @@ def split_agents(raw_name: str) -> list[str]:
         return f"\x00{len(protected) - 1}\x00"
 
     text = PARENS.sub(_protect, raw_name)
+    text = ARM_PREFIX.sub("", text)
+    text = EMBEDDED_TYPE.sub(" + ", text)               # "AK129 Drug: cadonilimab" -> two agents
     parts = [p for p in COMBO_SPLIT.split(text) if p and p.strip()]
     out = []
     for part in parts:
         part = re.sub(r"\x00(\d+)\x00", lambda m: protected[int(m.group(1))], part)
-        cleaned = _tidy(part)
+        cleaned = TRAILING_NOISE.sub("", _tidy(part)).strip(" -–,.;:/")
+        cleaned = _balance_parens(cleaned)
         if cleaned and not re.fullmatch(r"[\d\s.,/-]*", cleaned):
-            out.append(cleaned)
+            out.extend(REGIMEN_COMPONENTS.get(name_key(cleaned), [cleaned]))
     return out or ([_tidy(raw_name)] if _tidy(raw_name) else [])
 
 
@@ -153,7 +220,8 @@ def candidate_names(agent_text: str) -> list[str]:
     for n in [main, *aliases]:
         if n and len(name_key(n)) >= 2 and name_key(n) not in {name_key(x) for x in names}:
             names.append(n)
-    return names
+    fixes = [SPELLING_FIXES[name_key(n)] for n in names if name_key(n) in SPELLING_FIXES]
+    return names + [f for f in fixes if name_key(f) not in {name_key(x) for x in names}]
 
 
 CODE_NAME = re.compile(r"^([A-Za-z]{2,6})[\s-]?(\d{2,7}[A-Za-z]?\d*)$")
@@ -174,6 +242,7 @@ def role_of(agent_text: str, intervention_type: str = "") -> str:
         return PLACEBO
     if intervention_type.upper() in NON_DRUG_TYPES or NON_DRUG_PATTERN.search(agent_text):
         return NON_DRUG
-    if SOC_PATTERN.search(agent_text) or GENERIC_REGIMEN.match(agent_text.strip()):
+    if (SOC_PATTERN.search(agent_text) or GENERIC_REGIMEN.match(agent_text.strip())
+            or GENERIC_TREATMENT.match(agent_text.strip())):
         return STANDARD_OF_CARE
     return DRUG

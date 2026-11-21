@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import re
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -32,7 +33,8 @@ class CuratedEntry:
 
 
 def split_synonyms(text: str) -> tuple[str, ...]:
-    return tuple(s.strip() for s in text.replace("|", ";").split(";") if s.strip())
+    # ";" is the separator; "|" and "," are accepted too, since spreadsheets invite commas.
+    return tuple(s.strip() for s in re.split(r"[;|,]", text) if s.strip())
 
 
 class CuratedTable:

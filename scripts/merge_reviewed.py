@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -29,11 +30,25 @@ VALID_MODALITIES = set(T.MODALITIES) | {T.NOT_CLASSIFIED}
 YES = {"yes", "y", "true", "1", "reviewed"}
 
 
+def iso_date(text: str) -> str:
+    """Excel rewrites 2026-11-21 as 11/21/26 or 11/21/2026; put it back."""
+    m = re.fullmatch(r"(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})", text.strip())
+    if not m:
+        return text.strip()
+    month, day, year = m.groups()
+    year = f"20{year}" if len(year) == 2 else year
+    return f"{year}-{int(month):02d}-{int(day):02d}"
+
+
 def read(path: Path) -> list[dict]:
     if not path.exists():
         return []
-    with open(path, newline="", encoding="utf-8") as f:
-        return [{c: (r.get(c) or "").strip() for c in COLUMNS} for r in csv.DictReader(f) if (r.get("agent") or "").strip()]
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        rows = [{c: (r.get(c) or "").strip() for c in COLUMNS} for r in csv.DictReader(f) if (r.get("agent") or "").strip()]
+    for r in rows:
+        r["date"] = iso_date(r["date"])
+        r["synonyms"] = "; ".join(split_synonyms(r["synonyms"]))
+    return rows
 
 
 def write(path: Path, rows: list[dict]) -> None:

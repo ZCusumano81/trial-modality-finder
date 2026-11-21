@@ -11,6 +11,7 @@ import pandas as pd
 import streamlit as st
 
 from app.ctgov import PHASES, STATUSES, CTGovError, SearchQuery
+from app.drugsearch import identify
 from app.modalitysearch import TARGETS
 from app.pipeline import SearchOutcome, run_search
 from app.results import (Filters, agents_table, filter_trials, modality_options, to_csv, to_excel,
@@ -33,6 +34,15 @@ def corrections_email() -> str:
 def status_label(code: str) -> str:
     words = code.replace("_", " ").lower().replace("active not", "active, not")
     return words[0].upper() + words[1:]
+
+
+@st.cache_data(ttl=3600, show_spinner=False, max_entries=200)
+def known_drug(text: str) -> str:
+    """The drug's consistent name if this text is a known drug (curated table or ChEMBL), else ""."""
+    if not text.strip() or len(text.split()) > 4:
+        return ""
+    display, _, identified = identify(text.strip())
+    return display if identified else ""
 
 
 @st.cache_data(ttl=3600, show_spinner=False, max_entries=50)
@@ -94,6 +104,8 @@ if submitted:
                 st.session_state["outcome"] = cached_search(
                     fields, tuple(statuses), tuple(phases), nct_ids, max_results, merge, chosen_modality,
                     any_arm)
+                st.session_state["drug_hint"] = (
+                    known_drug(text) if text.strip() and not drug.strip() else "")
                 st.session_state["search_description"] = "; ".join(
                     f"{k}: {v}" for k, v in [("modality", chosen_modality), ("drug", drug), ("condition", condition), ("text", text),
                                              ("sponsor", sponsor), ("location", location),
@@ -110,6 +122,11 @@ if outcome is None:
             "(e.g. ADC) with a condition such as **breast cancer**.")
 else:
     # ------------------------------------------------------------ search summary
+    if st.session_state.get("drug_hint"):
+        st.info(f'"**{text.strip() or st.session_state["drug_hint"]}**" looks like a drug name '
+                f'(**{st.session_state["drug_hint"]}**). Free text only finds these exact words. Put it in '
+                "**Drug / intervention** instead to include every name the drug goes by (code names, brand "
+                "names, synonyms).")
     modality_search = bool(outcome.modality_label) and outcome.candidates > 0
     if modality_search:
         where = "any arm" if outcome.modality_any_arm else "an experimental arm"

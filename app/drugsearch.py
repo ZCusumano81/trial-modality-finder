@@ -18,7 +18,7 @@ from typing import Callable
 from app import chembl
 from app.ctgov import CTGovError, SearchQuery, search_studies
 from app.curated import CuratedTable, default_table
-from app.names import candidate_names, name_key, split_agents
+from app.names import DRUG, candidate_names, name_key, role_of, split_agents
 from app.trial import Intervention, Trial, parse_study
 
 MAX_SEARCH_NAMES = 12        # don't fire off dozens of searches for one drug
@@ -49,12 +49,17 @@ def _unique(names: list[str]) -> list[str]:
     return out
 
 
-def known_names(drug: str, *, online: bool = True, table: CuratedTable | None = None) -> tuple[str, list[str]]:
-    """(display name, every known name) from the curated table and ChEMBL."""
+def identify(drug: str, *, online: bool = True,
+             table: CuratedTable | None = None) -> tuple[str, list[str], bool]:
+    """(display name, every known name, identified?) from the curated table and ChEMBL.
+
+    identified is False when neither source knows the name (e.g. a new code name).
+    """
     table = table or default_table()
     names = [drug]
     display = drug.strip()
     entry = table.find(drug)
+    hit = None
     if online:
         hit = chembl.lookup(entry.agent if entry else drug) or (chembl.lookup(drug) if entry else None)
         if hit:
@@ -65,7 +70,13 @@ def known_names(drug: str, *, online: bool = True, table: CuratedTable | None = 
     if entry:
         names = [entry.agent, *entry.synonyms, *names]
         display = entry.agent
-    return display, _unique(names)
+    return display, _unique(names), bool(entry or hit)
+
+
+def known_names(drug: str, *, online: bool = True, table: CuratedTable | None = None) -> tuple[str, list[str]]:
+    """(display name, every known name) from the curated table and ChEMBL."""
+    display, names, _ = identify(drug, online=online, table=table)
+    return display, names
 
 
 def intervention_keys(iv: Intervention) -> set[str]:
@@ -107,36 +118,79 @@ def trial_has_drug(trial: Trial, patterns: list[list[str]]) -> bool:
     return any(intervention_has_drug(iv, patterns) for iv in trial.interventions)
 
 
-def learn_code_names(trials: list[Trial], keys: set[str], patterns: list[list[str]],
-                     *, online: bool = True, min_trials: int = 2) -> list[str]:
-    """Code names that trials pair with this drug, e.g. "AK112" for ivonescimab.
+# Words that show up in "other names" but aren't names of this drug.
+GENERIC_NAME = re.compile(
+    r"^(?:study drug|investigational (?:product|drug|agent)|experimental (?:product|drug|arm)|test (?:product|drug)|"
+    r"active (?:drug|treatment)|treatment|therapy|injection|drug|biological|combination|monotherapy|regimen)$", re.I)
 
-    Trials' "other names" are messy (other drugs, company names, "standard of
-    care"), so a learned name must look like a code (contain a digit, at most two
-    words), be seen in at least `min_trials` trials, and not be a different drug in ChEMBL.
+
+def learn_names(trials: list[Trial], keys: set[str], patterns: list[list[str]], *, identified: bool,
+                online: bool = True, table: CuratedTable | None = None,
+                min_trials: int = 2) -> list[str]:
+    """Other names that trials pair with this drug, in either direction.
+
+    A trial listing "Telisotuzumab adizutecan" with other name "ABBV-400" teaches
+    that the two are the same drug, whichever one was searched. Trials' other names
+    are messy (partner drugs, company names, "study drug"), so a candidate must:
+    - come from an intervention that names only this drug,
+    - not be placebo / standard of care / a procedure / a generic phrase / the sponsor,
+    - and either be confirmed by ChEMBL or the curated table as the same drug, or be
+      seen with this drug in at least `min_trials` trials (3 if it has no digit).
+    If this drug wasn't known to ChEMBL or the curated table (identified=False), a
+    known drug is adopted as its identity when >= min_trials trials use the known drug
+    as the intervention name with this drug among its other names.
     """
+    table = table or default_table()
     seen_in: dict[str, set[str]] = {}
+    as_main_name: dict[str, set[str]] = {}       # candidate was the intervention's main name
+    sponsors = {name_key(t.sponsor) for t in trials if t.sponsor}
     for t in trials:
         for iv in t.interventions:
-            parts = split_agents(iv.name)
-            if len(parts) != 1 or not intervention_has_drug(iv, patterns):
+            if len(split_agents(iv.name)) != 1 or not intervention_has_drug(iv, patterns):
                 continue
-            for text in [iv.name, *iv.other_names]:
+            for i, text in enumerate([iv.name, *iv.other_names]):
                 sub = split_agents(text)
                 if len(sub) != 1:
                     continue
                 for n in candidate_names(sub[0]):
-                    if (name_key(n) not in keys and re.search(r"\d", n) and len(n.split()) <= 2
-                            and _searchable(n) and not re.search(r"placebo", n, re.I)):
-                        seen_in.setdefault(n, set()).add(t.nct_id)
-    learned = []
-    for n, ids in sorted(seen_in.items(), key=lambda kv: -len(kv[1])):
-        if len(ids) < min_trials or name_key(n) in {name_key(x) for x in learned}:
+                    k = name_key(n)
+                    if (k in keys or not _searchable(n) or role_of(n) != DRUG or GENERIC_NAME.match(n.strip())
+                            or re.search(r"\b(?:or|and|plus|with)\b|[,/+]", n, re.I)
+                            or k in sponsors or any(k and k in sp for sp in sponsors)):
+                        continue
+                    seen_in.setdefault(n, set()).add(t.nct_id)
+                    if i == 0:
+                        as_main_name.setdefault(n, set()).add(t.nct_id)
+
+    learned: list[str] = []
+    for n, ids in sorted(seen_in.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        k = name_key(n)
+        if k in {name_key(x) for x in learned}:
             continue
-        if online and (hit := chembl.lookup(n)) and name_key(hit.pref_name) not in keys:
-            continue              # ChEMBL says it's a different drug
-        learned.append(n)
+        entry = table.find(n)
+        hit = chembl.lookup(n) if online else None
+        known_keys = ({name_key(x) for x in entry.all_names} if entry else set()) | \
+                     ({name_key(hit.pref_name), *(name_key(x) for x in hit.synonyms)} if hit else set())
+        if entry or hit:
+            if known_keys & keys:
+                learned.append(n)                  # confirmed: the same drug
+            elif not identified and len(as_main_name.get(n, ())) >= min_trials:
+                # Our unknown code is this known drug - but only if trials name the known
+                # drug as the intervention and list our code as its other name. (A code
+                # name with partner drugs in its "other names" must not become a partner.)
+                learned.append(n)
+            continue                               # otherwise: a different drug
+        needed = min_trials if re.search(r"\d", n) else min_trials + 1
+        if len(ids) >= needed:
+            learned.append(n)
     return learned
+
+
+# Kept for older callers.
+def learn_code_names(trials: list[Trial], keys: set[str], patterns: list[list[str]],
+                     *, online: bool = True, min_trials: int = 2) -> list[str]:
+    return [n for n in learn_names(trials, keys, patterns, identified=True, online=online, min_trials=min_trials)
+            if re.search(r"\d", n) and len(n.split()) <= 2]
 
 
 def _searchable(name: str) -> bool:
@@ -162,7 +216,7 @@ def search_drug(
         raise CTGovError("Please enter a drug name.")
     base = base_query or SearchQuery()
     run = search_fn or (lambda q, n: search_studies(q, max_results=n))
-    display, names = known_names(drug, online=online, table=table)
+    display, names, identified = identify(drug, online=online, table=table)
     keys = {name_key(n) for n in names}
     result = DrugSearchResult(drug=drug, display_name=display, names=names)
 
@@ -180,20 +234,36 @@ def search_drug(
             t = parse_study(raw)
             raw_by_id.setdefault(t.nct_id, t)
 
-    to_search = [n for n in names if _searchable(n)][:MAX_SEARCH_NAMES]
-    for n in to_search:
+    def add_names(new: list[str]) -> None:
+        for n in new:
+            if name_key(n) and name_key(n) not in keys:
+                keys.add(name_key(n))
+                result.names.append(n)
+
+    for n in [n for n in names if _searchable(n)][:MAX_SEARCH_NAMES]:
         search(n)
 
-    # Learn extra code names from trials that clearly are this drug (e.g. a trial
-    # listing "Ivonescimab" with other name "AK112"), then search those too.
-    patterns = name_patterns(names)
-    for n in learn_code_names(list(raw_by_id.values()), keys, patterns, online=online)[
-            : max(0, MAX_SEARCH_NAMES - len(to_search))]:
-        result.names.append(n)
-        keys.add(name_key(n))
-        patterns = name_patterns(result.names)
-        search(n)
+    # Learn other names from the trials found (e.g. "ABBV-400" listed with other name
+    # "Telisotuzumab adizutecan", or the reverse), widen them with the curated table and
+    # ChEMBL, and search those too. Two rounds at most.
+    for _ in range(2):
+        learned = learn_names(list(raw_by_id.values()), keys, name_patterns(result.names),
+                              identified=identified, online=online, table=table)
+        if not learned:
+            break
+        add_names(learned)
+        for n in learned:
+            d, more, ok = identify(n, online=online, table=table)
+            if ok:
+                add_names(more)
+                if not identified:
+                    result.display_name, identified = d, True
+        for n in [n for n in result.names if _searchable(n) and n not in result.searched]:
+            if len(result.searched) >= MAX_SEARCH_NAMES:
+                break
+            search(n)
 
+    patterns = name_patterns(result.names)
     for t in raw_by_id.values():
         (result.trials if trial_has_drug(t, patterns) else result.dropped).append(t)
     if result.errors and not result.searched:

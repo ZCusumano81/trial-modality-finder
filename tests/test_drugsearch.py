@@ -105,3 +105,47 @@ def test_live_ivonescimab_finds_ak112_only_trials(monkeypatch):
     r = search_drug("ivonescimab")
     assert len(r.trials) > len(one_name) + 20          # AK112-only trials are now included
     assert "AK112" in r.searched
+
+
+def test_code_name_learns_full_name_both_ways(monkeypatch):
+    """Searching a code name ChEMBL doesn't know finds the full-name trials too, and vice versa."""
+    from app.chembl import ChemblHit
+    from app.curated import CuratedTable
+    db = {"foozumab vedotin": ChemblHit("CHEMBL9", "FOOZUMAB VEDOTIN", "Antibody drug conjugate", [])}
+    monkeypatch.setattr(chembl, "lookup", lambda name, client=None: db.get(name.lower()))
+    site = {
+        # Real trials write the full name as the intervention, with the code as its other name.
+        "xyz-400": [raw("NCT1", ("Foozumab vedotin", ["XYZ-400"])), raw("NCT2", ("Foozumab vedotin", ["XYZ-400"]))],
+        "foozumab vedotin": [raw("NCT1", ("Foozumab vedotin", ["XYZ-400"])),
+                             raw("NCT2", ("Foozumab vedotin", ["XYZ-400"])),
+                             raw("NCT3", ("Foozumab vedotin", []))],
+    }
+    empty = CuratedTable([])
+    results = {}
+    for start in ["XYZ-400", "foozumab vedotin"]:
+        run, _ = fake_site(site)
+        r = search_drug(start, search_fn=run, table=empty)
+        results[start] = sorted(t.nct_id for t in r.trials)
+        assert r.display_name == "foozumab vedotin"
+    assert results["XYZ-400"] == results["foozumab vedotin"] == ["NCT1", "NCT2", "NCT3"]
+
+
+def test_partner_drugs_and_sponsors_are_not_learned(monkeypatch):
+    from app.chembl import ChemblHit
+    from app.curated import CuratedTable
+    db = {"oxaliplatin": ChemblHit("CHEMBL1", "OXALIPLATIN", "Small molecule", [])}
+    monkeypatch.setattr(chembl, "lookup", lambda name, client=None: db.get(name.lower()))
+    trials = [raw(f"NCT{i}", ("Barximab", ["Oxaliplatin", "Acme Pharma", "study drug"])) for i in range(4)]
+    for t in trials:
+        t["protocolSection"]["sponsorCollaboratorsModule"] = {"leadSponsor": {"name": "Acme Pharma"}}
+    run, searched = fake_site({"barximab": trials})
+    r = search_drug("Barximab", search_fn=run, table=CuratedTable([]))
+    assert [s for s, _ in searched] == ["Barximab"]          # nothing extra learned or searched
+    assert r.display_name == "Barximab"
+
+
+def test_curated_synonym_unused_by_any_trial():
+    run, searched = fake_site({"abbv-400": [raw("NCT1", ("ABBV-400", []))]})
+    r = search_drug("Temab-A", search_fn=run)
+    assert r.display_name == "telisotuzumab adizutecan"
+    assert [t.nct_id for t in r.trials] == ["NCT1"]

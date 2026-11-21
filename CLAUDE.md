@@ -109,8 +109,14 @@ deruxtecan and ifinatamab deruxtecan trials, and trials that only mention it).
   radiopharmaceutical, bispecific, mAb, ... small molecule), target prefixed when
   known ("Nectin-4 ADC + PD-1/VEGF bispecific"), repeated labels shown once,
   "(+ placebo)" appended. Trial label = experimental arms, joined with " | ".
-- Learned code names from trials' otherNames must contain a digit, be <=2 words,
-  appear in >=2 trials, and not be a different drug in ChEMBL.
+- Name learning works both ways (app/drugsearch.py learn_names, 2026-11-21): a
+  candidate from the same single-drug intervention is learned if ChEMBL/curated
+  confirm it's the same drug, or it's seen in >=2 trials (3 if no digit) and isn't
+  placebo/SOC/procedure/generic/sponsor/"A or B". An unknown code (e.g. ABBV-400)
+  adopts a known drug as its identity only when >=2 trials use the known drug as
+  the intervention name with the code in otherNames (guards against partner drugs
+  listed as otherNames). Learned names are widened via curated table + ChEMBL; up
+  to 2 rounds. Nicknames no trial uses (e.g. Temab-A) need a curated synonym.
 - Open question for the owner: radioligands (Pluvicto) are filed as
   Radiopharmaceutical / sub-type radioligand.
 - Curated seed rows are reviewed = "no" until the owner checks them.

@@ -7,6 +7,7 @@ name or any synonym) updates that row and keeps all synonyms from both.
 Usage:
     uv run python scripts/merge_reviewed.py --dry-run   # show what would change
     uv run python scripts/merge_reviewed.py             # do it
+    uv run python scripts/merge_reviewed.py --also-confidence high   # plus unreviewed high-confidence rows
 """
 from __future__ import annotations
 
@@ -62,47 +63,64 @@ def keys(row: dict) -> set[str]:
     return {name_key(n) for n in [row["agent"], *split_synonyms(row["synonyms"])] if name_key(n)}
 
 
-def merge(table: list[dict], proposed: list[dict]) -> tuple[list[dict], list[dict], list[str], list[str]]:
-    """Returns (new table, rows left in proposed, log lines, problems)."""
+def merge(table: list[dict], proposed: list[dict], also_confidence: set[str] | None = None
+          ) -> tuple[list[dict], list[dict], list[str], list[str]]:
+    """Returns (new table, rows left in proposed, log lines, problems).
+
+    Rows marked reviewed = yes are merged as reviewed. Rows whose confidence is in
+    also_confidence (e.g. {"high"}) are merged too, but keep reviewed = "no" so the
+    app still shows them as not yet reviewed.
+    """
+    also_confidence = {c.lower() for c in (also_confidence or set())}
     table = [dict(r) for r in table]
     left, log, problems = [], [], []
     for row in proposed:
-        if row["reviewed"].lower() not in YES:
+        reviewed = row["reviewed"].lower() in YES
+        if not reviewed and row["confidence"].lower() not in also_confidence:
             left.append(row)
             continue
         if row["modality"] not in VALID_MODALITIES:
             problems.append(f'{row["agent"]}: modality "{row["modality"]}" is not in the taxonomy - left in proposed')
             left.append(row)
             continue
-        row = {**row, "reviewed": "yes", "date": row["date"] or date.today().isoformat()}
+        row = {**row, "reviewed": "yes" if reviewed else "no", "date": row["date"] or date.today().isoformat()}
+        how = "reviewed" if reviewed else f'{row["confidence"]} confidence, not yet reviewed'
         match = next((t for t in table if keys(t) & keys(row)), None)
         if match:
             syns = [s for s in [*split_synonyms(match["synonyms"]), *split_synonyms(row["synonyms"])]
                     if name_key(s) != name_key(match["agent"])]
             unique = list(dict.fromkeys(syns))
-            changes = [c for c in ("modality", "sub_modality", "target") if row[c] != match[c]]
-            match.update({**row, "agent": match["agent"], "synonyms": "; ".join(unique)})
-            log.append(f'updated {match["agent"]}' + (f' ({", ".join(changes)} changed)' if changes else ""))
+            changes = [c for c in ("modality", "sub_modality", "target") if row[c] and row[c] != match[c]]
+            if row["modality"] == match["modality"]:
+                # Same drug, same call: just add the new names; keep the existing evidence.
+                added = [s for s in unique if name_key(s) not in keys(match)]
+                match["synonyms"] = "; ".join(unique)
+                log.append(f'added names to {match["agent"]}: {", ".join(added) or "(none new)"} ({how})')
+            else:
+                match.update({**row, "agent": match["agent"], "synonyms": "; ".join(unique)})
+                log.append(f'UPDATED {match["agent"]}: {", ".join(changes)} changed ({how})')
         else:
             table.append(row)
-            log.append(f'added {row["agent"]}: {row["modality"]}')
+            log.append(f'added {row["agent"]}: {row["modality"]} ({how})')
     return table, left, log, problems
 
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--also-confidence", action="append", default=[], metavar="LEVEL",
+                   help='also merge unreviewed rows with this confidence, e.g. --also-confidence high')
     args = p.parse_args()
     table, proposed = read(TABLE), read(PROPOSED)
     if not proposed:
         print(f"Nothing to merge: {PROPOSED.relative_to(ROOT)} is empty or missing.")
         return 0
-    new_table, left, log, problems = merge(table, proposed)
+    new_table, left, log, problems = merge(table, proposed, set(args.also_confidence))
     for line in log:
         print("  " + line)
     for line in problems:
         print("  PROBLEM: " + line)
-    print(f"{len(log)} reviewed rows merged; {len(left)} rows left in proposed_modalities.csv.")
+    print(f"{len(log)} rows merged; {len(left)} rows left in proposed_modalities.csv.")
     if args.dry_run:
         print("(dry run - nothing was changed)")
         return 0
